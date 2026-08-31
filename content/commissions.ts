@@ -1,13 +1,17 @@
 // =============================================================================
 // COMMISSIONS — whether you're open, your tiers, prices, and terms.
 //
+// Everything here is EMPTY on purpose — these are your prices and your
+// terms to write, not guesses. The page hides any section you leave empty,
+// so it looks finished at every stage of filling it in.
+//
 // The images these entries point at live in  public/art/commissions/
 //
 // ⭐ To open/close commissions: change `commissionsOpen` below to true or
 //    false, save, redeploy. That's it — the badge and page update everywhere.
 //
-// HOW TO ADD A TIER: copy an example { ... }, block in the tiers list and
-// edit each line.
+// HOW TO ADD A TIER: copy the commented-out example in the tiers list,
+// remove the // marks, and edit each line.
 //
 // Rules that keep the file from breaking:
 //   - Text always goes between quotes:  "like this"
@@ -29,10 +33,16 @@ export type CommissionTier = {
   name: string;
   /** What the client gets at this tier — a sentence or two. */
   description: string;
-  /** Starting price in whole units of your currency, WITHOUT quotes and without a currency sign — just the number, e.g. 120 */
-  priceFrom: number;
-  /** The currency symbol or code to show next to the price, e.g. "$", "€", "USD". */
-  currency: string;
+  /**
+   * Starting price — just the number, WITHOUT quotes and without a currency
+   * sign, e.g. 120. Leave this line out entirely if you'd rather quote per
+   * piece; the tier then shows your `priceNote` text instead (or nothing).
+   */
+  priceFrom?: number;
+  /** The currency symbol or code shown next to the price, e.g. "$", "€", "USD". */
+  currency?: string;
+  /** Shown in place of a price when you haven't set one, e.g. "quoted per piece". Optional. */
+  priceNote?: string;
   /** Example images for this tier, from public/art/commissions/. Can be [] if you have none yet. */
   examples: CommissionExample[];
 };
@@ -47,15 +57,15 @@ export type CommissionsConfig = {
   commissionsOpen: boolean;
   /** How people order — e.g. "Email me at ..." or a link to your form. Shown when open. */
   howToOrder: string;
-  /** Your terms of service, one short sentence per line. Each string in the list becomes a bullet point. */
+  /** Your terms of service, one short sentence per line. Each string becomes a numbered point. Empty = the section is hidden. */
   terms: string[];
-  /** Things you WILL draw — one per line, shown as a list. */
+  /** Things you WILL draw — one per line. Empty = the section is hidden. */
   willDraw: string[];
-  /** Things you WON'T draw — one per line, shown as a list. */
+  /** Things you WON'T draw — one per line. Empty = the section is hidden. */
   wontDraw: string[];
   /** Optional: the filename of a pricing-sheet image in public/art/commissions/, or "" if you don't use one. */
   pricingSheetImage: string;
-  /** Your tiers, in the order they should appear on the page. */
+  /** Your tiers, in the order they should appear on the page. Empty = the section is hidden. */
   tiers: CommissionTier[];
 };
 
@@ -63,71 +73,57 @@ export const commissions: CommissionsConfig = {
   // ⭐ The switch: true = open for commissions, false = closed. No quotes.
   commissionsOpen: false,
 
-  // How a client actually orders once you're open.
-  howToOrder: "Email aethy@aethy.studio with the tier you want, references for the character(s), and a description of the piece. I'll reply with a quote and my current queue time.",
+  // How a client actually orders once you're open. Edit to taste.
+  howToOrder:
+    "Email aethy@aethy.studio with references for the character(s) and a description of what you're after.",
 
-  // Your terms — one bullet per line. [EDIT ME to match your real terms]
-  terms: [
-    "50% upfront, 50% on completion. Payment via invoice.",
-    "Turnaround is typically 2–4 weeks depending on tier and queue.",
-    "You'll receive WIP check-ins at sketch and line stages; two rounds of revisions are included.",
-    "Finished pieces may be posted to my portfolio unless you ask for privacy.",
-    "I reserve the right to decline any commission.",
-  ],
+  // ---------------------------------------------------------------------------
+  // TERMS OF SERVICE — your rules, in your words. Each line becomes a
+  // numbered point. While this list is empty the whole section stays hidden.
+  //
+  // Example of the shape (delete the // marks and edit, or write your own):
+  //   terms: [
+  //     "Payment terms go here.",
+  //     "Turnaround time goes here.",
+  //   ],
+  // ---------------------------------------------------------------------------
+  terms: [],
 
-  // Things you're happy to draw. [EDIT ME]
-  willDraw: [
-    "Anthro and feral characters",
-    "Anatomy and figure studies of your character",
-    "Character design and reference sheets",
-    "Creatures, monsters, and hybrids",
-  ],
+  // What you're happy to draw — one per line. Hidden while empty.
+  //   willDraw: ["Anthro characters", "Creature design"],
+  willDraw: [],
 
-  // Hard nos. [EDIT ME]
-  wontDraw: [
-    "[EDIT ME — list what you won't draw]",
-  ],
+  // Your hard nos — one per line. Hidden while empty.
+  //   wontDraw: ["Mecha", "Real people"],
+  wontDraw: [],
 
   // If you use a single pricing-sheet graphic, put its filename here (it must
   // exist in public/art/commissions/). Leave as "" to skip it.
   pricingSheetImage: "",
 
-  // Your tiers. Prices below are PLACEHOLDERS — [EDIT ME] with your real
-  // prices. The example images point at real files already in the repo;
-  // swap them for whichever pieces best represent each tier.
-  tiers: [
-    {
-      name: "Sketch",
-      description: "A clean single-character sketch — gesture and construction visible, the way a study should be.",
-      priceFrom: 60, // [EDIT ME — placeholder price]
-      currency: "$",
-      examples: [
-        { file: "commission-example-6.webp", nsfw: false },
-        { file: "commission-example-10.webp", nsfw: false },
-      ],
-    },
-    {
-      name: "Line Art",
-      description: "Full resolved line work of a single character, ready for print or your own coloring.",
-      priceFrom: 120, // [EDIT ME — placeholder price]
-      currency: "$",
-      examples: [
-        { file: "commission-example-2.webp", nsfw: false },
-        { file: "commission-example-9.webp", nsfw: false },
-      ],
-    },
-    {
-      name: "Full Render",
-      description: "A fully painted single character with simple background, delivered at print resolution.",
-      priceFrom: 250, // [EDIT ME — placeholder price]
-      currency: "$",
-      examples: [
-        { file: "commission-example-1.webp", nsfw: false },
-        { file: "commission-example-3.webp", nsfw: false },
-        { file: "commission-example-8.webp", nsfw: false },
-      ],
-    },
-
-    // 👉 Paste your next tier here, as another { ... }, block just like the ones above.
-  ],
+  // ---------------------------------------------------------------------------
+  // TIERS — your prices. Empty until you write them; the section stays
+  // hidden meanwhile, and the page invites people to email for a quote.
+  //
+  // Copy the block below, remove the // marks, and edit. You can list a
+  // tier WITHOUT a price: just leave out the priceFrom/currency lines and
+  // add a priceNote instead (or nothing at all).
+  //
+  //   tiers: [
+  //     {
+  //       name: "Sketch",
+  //       description: "What the client gets at this tier.",
+  //       priceFrom: 0,          // the number only — or delete this line
+  //       currency: "$",         // delete this line too if there's no price
+  //       priceNote: "",         // e.g. "quoted per piece" when there's no number
+  //       examples: [
+  //         { file: "commission-example-6.webp", nsfw: false },
+  //       ],
+  //     },
+  //   ],
+  //
+  // The example images already in public/art/commissions/ are:
+  //   commission-example-1.webp … commission-example-10.webp
+  // ---------------------------------------------------------------------------
+  tiers: [],
 };
