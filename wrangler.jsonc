@@ -1,0 +1,14 @@
+// Cloudflare Workers config for the OpenNext build.
+// `npx opennextjs-cloudflare build` writes the worker and static assets
+// into .open-next/, and this file tells wrangler what to deploy.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "aethy",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  }
+}
