@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Hand-coded typographic mark: flat colors only, no artwork. -->
+  <rect width="64" height="64" fill="#141009"/>
+  <text x="32" y="46" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-style="italic" text-anchor="middle" fill="#d99a3d">A</text>
+  <rect x="12" y="54" width="40" height="2" fill="#8fe3c0"/>
+</svg>
