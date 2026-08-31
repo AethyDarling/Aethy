@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Palette values are injected on <html> by app/layout.tsx from content/theme.ts.
+   Edit colors THERE — these are only fallbacks so the page never renders unstyled. */
+:root {
+  --c-ink: #141009;
+  --c-surface: #1d1712;
+  --c-line: #3a3128;
+  --c-bone: #eae0cf;
+  --c-muted: #a3988a;
+  --c-amber: #d99a3d;
+  --c-mint: #8fe3c0;
+  --c-rust: #a34d28;
+}
+
+html {
+  color-scheme: dark;
+  scrollbar-color: var(--c-line) var(--c-ink);
+}
+
+body {
+  background: var(--c-ink);
+  color: var(--c-bone);
+  font-feature-settings: "ss01" on;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--c-amber);
+  color: var(--c-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-mint);
+  outline-offset: 2px;
+}
+
+/* ---- Anatomy-notebook UI language ---------------------------------------- */
+
+/* Fine construction rule with proportion tick marks, used between sections. */
+.rule-ticks {
+  position: relative;
+  height: 1px;
+  background: var(--c-line);
+}
+.rule-ticks::before,
+.rule-ticks::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  width: 1px;
+  height: 7px;
+  background: var(--c-line);
+}
+.rule-ticks::before { left: 33.333%; }
+.rule-ticks::after { left: 66.666%; }
+
+/* Contour-trace hover: two hairlines draw around the element's border.
+   Pure flat color, no glow. Apply .trace to a relatively-positioned card. */
+.trace::before,
+.trace::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid transparent;
+}
+.trace::before {
+  border-top-color: var(--c-amber);
+  border-right-color: var(--c-amber);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.trace::after {
+  border-bottom-color: var(--c-amber);
+  border-left-color: var(--c-amber);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+}
+.trace:hover::before,
+.trace:focus-within::before {
+  clip-path: inset(0 0 0 0);
+}
+.trace:hover::after,
+.trace:focus-within::after {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Link underline that draws in from the left. */
+.draw-link {
+  position: relative;
+  text-decoration: none;
+}
+.draw-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.draw-link:hover::after,
+.draw-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Flat labeled slot for artwork that hasn't been supplied yet. */
+.art-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--c-surface);
+  border: 1px dashed var(--c-line);
+  color: var(--c-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

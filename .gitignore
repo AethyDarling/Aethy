@@ -40,3 +40,6 @@ desktop.ini
 *.afdesign
 *.tif
 *.tiff
+
+# TypeScript incremental build info
+*.tsbuildinfo

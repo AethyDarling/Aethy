@@ -6,7 +6,7 @@
 //   1. Create their folder:  public/art/characters/<character-name>/
 //      (lowercase, hyphens instead of spaces — see the _README.md in that folder)
 //   2. Drop their reference sheets / art into that folder.
-//   3. Copy the example entry below (the whole { ... }, block) and paste it
+//   3. Copy the aethy entry below (the whole { ... }, block) and paste it
 //      after the last entry, then edit each line.
 //
 // Rules that keep the file from breaking:
@@ -17,61 +17,108 @@
 
 /** One image belonging to a character. (Shape definition — don't edit.) */
 export type CharacterImage = {
-  /** Filename inside that character's folder — must match exactly, including .jpg/.png */
+  /** Filename inside that character's folder — must match exactly, including .jpg/.png/.webp */
   file: string;
   /** A short label for this image, e.g. "Reference sheet" or "Winter outfit". */
   label: string;
-  /** true if THIS image is adult (blurred/gated), false otherwise. */
+  /** true if THIS image is adult (hidden until the visitor confirms 18+), false otherwise. */
   nsfw: boolean;
 };
 
 /** One character. (Shape definition — don't edit.) */
 export type Character = {
-  /** The character's folder name inside public/art/characters/ — must match the folder exactly. */
+  /** The character's folder name inside public/art/characters/ — must match the folder exactly. Also becomes their page address, e.g. /characters/aethy/ */
   folder: string;
   /** The character's display name, as visitors should see it. */
   name: string;
-  /** A paragraph introducing the character — who they are, their story, whatever you want shown. */
+  /** The character's species, shown under their name. Can be "" if you'd rather not say. */
+  species: string;
+  /** A paragraph (or several — use \n\n between them) introducing the character: who they are, their story, their lore. */
   description: string;
-  /** Which image (by filename, from the images list below) to use as this character's thumbnail. */
+  /** Which image (by filename, from the images list below) to use as this character's thumbnail on the index page. */
   thumbnail: string;
-  /** true if the character as a whole is adult-only — hides the entire character behind the gate. Individual images also have their own nsfw flag. */
+  /** true if the character as a whole is adult-only — hides the entire character until the visitor confirms 18+. Individual images also have their own nsfw flag. */
   nsfw: boolean;
   /** The character's images, in the order they should appear. Each is a { ... }, block. */
   images: CharacterImage[];
 };
 
 /**
- * All your characters. The example below matches the example-character
- * template folder — replace it with your first real character.
+ * All your characters. The aethy entry below points at the real files in
+ * public/art/characters/aethy/ — edit the [EDIT ME] text with your own
+ * species/lore whenever.
  */
 export const characters: Character[] = [
   {
     // Folder name inside public/art/characters/ — must match exactly.
-    folder: "example-character",
+    folder: "aethy",
 
     // Display name, however you like it capitalized.
-    name: "Example Character",
+    name: "Aethy",
 
-    // Their introduction. Multiple sentences are fine; keep it all inside the quotes.
-    description: "A placeholder character showing how entries work. Replace me with someone real.",
+    // Species shown under the name. [EDIT ME]
+    species: "[EDIT ME — species]",
+
+    // Their introduction. Multiple paragraphs are fine; keep it all inside
+    // the quotes and use \n\n for a paragraph break. [EDIT ME]
+    description: "[EDIT ME — who is Aethy? Add their story and lore here. This text lives in content/characters.ts.]",
 
     // Filename (from the images list below) used as the thumbnail on the characters page.
-    thumbnail: "portrait.jpg",
+    thumbnail: "aethy-character-example-7.webp",
 
-    // true hides the ENTIRE character behind the adult gate. false shows them normally.
+    // true hides the ENTIRE character behind the 18+ gate. false shows them normally.
     nsfw: false,
 
     // The character's images. Copy a { ... }, block to add more.
     images: [
       {
-        file: "ref-sheet.png",          // filename inside this character's folder
-        label: "Reference sheet",       // caption shown with the image
-        nsfw: false,                    // true if this specific image is adult
+        file: "aethy-character-example-7.webp",
+        label: "Colored bust",
+        nsfw: false,
       },
       {
-        file: "portrait.jpg",
-        label: "Portrait",
+        file: "aethy-character-example-6.webp",
+        label: "Sketch bust",
+        nsfw: false,
+      },
+      {
+        file: "aethy-character-example-8.webp",
+        label: "Leaping pose",
+        nsfw: false,
+      },
+      {
+        file: "aethy-character-example-9.webp",
+        label: "Kneeling pose",
+        nsfw: false,
+      },
+      {
+        file: "aethy-character-example-10.webp",
+        label: "Sitting study",
+        nsfw: false,
+      },
+      {
+        file: "aethy-character-example-1.webp",
+        label: "Crawl piece — gesture",
+        nsfw: false,
+      },
+      {
+        file: "aethy-character-example-2.webp",
+        label: "Crawl piece — refined lines",
+        nsfw: false,
+      },
+      {
+        file: "aethy-character-example-3.webp",
+        label: "Crawl piece — flats",
+        nsfw: false,
+      },
+      {
+        file: "aethy-character-example-4.webp",
+        label: "Crawl piece — face light",
+        nsfw: false,
+      },
+      {
+        file: "aethy-character-example-5.webp",
+        label: "Crawl piece — lit render",
         nsfw: false,
       },
     ],
