@@ -1,15 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // No `output: 'export'` here: the Cloudflare Workers project builds this
-  // site with OpenNext (`npx opennextjs-cloudflare build`), which needs
-  // Next's standalone server output. Every page is still fully prerendered
-  // at build time — nothing renders on-demand.
-  // Folder-style URLs (/gallery/ instead of /gallery) so every page keeps
-  // the same address it had as a static export.
+  // Fully static export — no server. `npx wrangler deploy` builds this via
+  // wrangler.jsonc's build.command and uploads the `out/` folder as a
+  // static-assets Worker.
+  output: 'export',
+  // Folder-style URLs (/gallery/ instead of /gallery) so static hosting
+  // serves every page cleanly without redirect rules.
   trailingSlash: true,
   images: {
-    // No image-optimizer: images are served as the exact files placed in
-    // /public/art/ (already web-sized WebP).
+    // The static export has no image-optimizer server; images are served
+    // as the exact files placed in /public/art/ (already web-sized WebP).
     unoptimized: true,
   },
 };
