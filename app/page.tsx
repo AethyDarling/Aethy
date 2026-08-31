@@ -90,8 +90,8 @@ export default function HomePage() {
               </div>
               <p className="text-muted text-sm leading-relaxed">
                 {open
-                  ? "Slots are available — tiers, prices, and terms are one click away."
-                  : "Not taking new work right now. Prices and terms are still up so you can plan ahead."}
+                  ? "Slots are available — the details are one click away."
+                  : "Not taking new work right now, but you can see what I offer and get in touch."}
               </p>
             </Link>
           </Reveal>
