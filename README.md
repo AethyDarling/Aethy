@@ -31,6 +31,7 @@ anything in `app/` or `components/`.
 | File | What it controls |
 |---|---|
 | `content/gallery.ts` | Every piece in the gallery: filename, title, description, date, tags, `nsfw` flag |
+| `content/process.ts` | Step-by-step breakdowns for the Process page: the stages of a piece, in order, with your commentary on each |
 | `content/characters.ts` | Your characters: name, species, lore, their images (each with its own `nsfw` flag) |
 | `content/commissions.ts` | **`commissionsOpen: true/false`** ← the open/closed switch, plus tiers, prices, will/won't draw, terms |
 | `content/site.ts` | Your bio, email, social links, the homepage featured strip, the share-preview image |

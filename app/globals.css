@@ -13,6 +13,17 @@
   --c-amber: #d99a3d;
   --c-mint: #8fe3c0;
   --c-rust: #a34d28;
+
+  /* Same colors as "R G B" channels — Tailwind opacity modifiers
+     (bg-ink/95 …) need this form. layout.tsx overrides both sets. */
+  --c-ink-rgb: 20 16 9;
+  --c-surface-rgb: 29 23 18;
+  --c-line-rgb: 58 49 40;
+  --c-bone-rgb: 234 224 207;
+  --c-muted-rgb: 163 152 138;
+  --c-amber-rgb: 217 154 61;
+  --c-mint-rgb: 143 227 192;
+  --c-rust-rgb: 163 77 40;
 }
 
 html {

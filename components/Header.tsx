@@ -9,6 +9,7 @@ import { useNsfw } from "./NsfwContext";
 
 const nav = [
   { href: "/gallery/", label: "Gallery" },
+  { href: "/process/", label: "Process" },
   { href: "/characters/", label: "Characters" },
   { href: "/commissions/", label: "Commissions" },
   { href: "/about/", label: "About" },

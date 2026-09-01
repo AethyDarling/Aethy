@@ -70,14 +70,30 @@ export default function HomePage() {
 
       {/* Commission status + paths */}
       <section className="max-w-6xl mx-auto px-5 pt-20">
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-3 gap-4">
           <Reveal>
+            <Link
+              href="/process/"
+              className="trace relative block border border-line bg-surface p-8 h-full"
+            >
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-amber mb-3">
+                fig. 02 — how it's built
+              </p>
+              <h2 className="font-display text-2xl text-bone mb-3">Process</h2>
+              <p className="text-muted text-sm leading-relaxed">
+                Stage-by-stage breakdowns — gesture and construction first,
+                then line, colour, and light. Press play and watch a piece
+                assemble itself.
+              </p>
+            </Link>
+          </Reveal>
+          <Reveal delay={0.1}>
             <Link
               href="/commissions/"
               className="trace relative block border border-line bg-surface p-8 h-full"
             >
               <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-amber mb-3">
-                fig. 02 — commissions
+                fig. 03 — commissions
               </p>
               <div className="flex items-center gap-3 mb-3">
                 <span
@@ -95,13 +111,13 @@ export default function HomePage() {
               </p>
             </Link>
           </Reveal>
-          <Reveal delay={0.1}>
+          <Reveal delay={0.2}>
             <Link
               href="/characters/"
               className="trace relative block border border-line bg-surface p-8 h-full"
             >
               <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-amber mb-3">
-                fig. 03 — cast
+                fig. 04 — cast
               </p>
               <h2 className="font-display text-2xl text-bone mb-3">Characters</h2>
               <p className="text-muted text-sm leading-relaxed">
