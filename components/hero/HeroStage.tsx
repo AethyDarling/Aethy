@@ -132,7 +132,7 @@ export default function HeroStage({
             begins immediately below. */}
         <div className="relative z-10 order-2 lg:order-1 text-center lg:text-left">
           <motion.h1
-            className="font-display text-bone leading-[0.95] text-[clamp(3rem,7vw,5.5rem)]"
+            className="font-display text-bone leading-[0.95] text-[clamp(3.5rem,8vw,6.5rem)] tracking-[0.06em]"
             initial={reduced ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: textDelay(0), ease: [0.22, 1, 0.36, 1] }}

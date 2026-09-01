@@ -101,7 +101,7 @@ export default function CharacterDetail({ character }: { character: Character })
       <Reveal>
         <div className="lg:sticky lg:top-28">
           <p className="label-caps text-muted mb-4">Field entry</p>
-          <h1 className="font-display text-5xl sm:text-6xl text-bone leading-[0.95]">
+          <h1 className="font-display italic text-5xl sm:text-6xl text-bone leading-[0.95]">
             {c.name}
           </h1>
           {c.species && !c.species.startsWith("[EDIT") && (

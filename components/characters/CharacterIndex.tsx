@@ -58,7 +58,7 @@ export default function CharacterIndex({
                 )}
               </span>
               <span className="flex items-baseline justify-between gap-3 pt-3">
-                <span className="font-display text-lg text-bone">
+                <span className="font-display italic text-xl text-bone">
                   {c.name}
                   {c.nsfw && (
                     <span className="ml-2 align-middle font-mono text-[0.55rem] uppercase text-mint border border-mint px-1">
