@@ -57,11 +57,11 @@ export const characters: Character[] = [
     name: "Aethy",
 
     // Species shown under the name. [EDIT ME]
-    species: "[EDIT ME — species]",
+    species: "Proto Gal!",
 
     // Their introduction. Multiple paragraphs are fine; keep it all inside
     // the quotes and use \n\n for a paragraph break. [EDIT ME]
-    description: "[EDIT ME — who is Aethy? Add their story and lore here. This text lives in content/characters.ts.]",
+    description: "Aethy is my main mascot, she has been here to help my anatomy development for the last few years!",
 
     // Filename (from the images list below) used as the thumbnail on the characters page.
     thumbnail: "aethy-character-example-7.webp",
