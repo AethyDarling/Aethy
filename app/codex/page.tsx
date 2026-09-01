@@ -15,17 +15,17 @@ const facets = [
   {
     n: "01",
     title: "Physics-first system design",
-    text: "Magic built the way physics is written: defined principles, costs, and constraints, with behavior derived from the rules instead of decreed case by case.",
+    text: "A layered-field hard-magic system written the way physics is: foundations first, unified under the Grand Unified Aether Equation, with behavior derived from the rules instead of decreed case by case.",
   },
   {
     n: "02",
-    title: "Unique in its application",
-    text: "Not a reskinned spell list — the system's uses emerge from its mechanics, which is what makes them surprising and what keeps them consistent.",
+    title: "Applied, tier by tier",
+    text: "Not a reskinned spell list — a Power Hierarchy with techniques worked out tier by tier, where the applications emerge from the mechanics and stay consistent because of it.",
   },
   {
     n: "03",
-    title: "Rigor & documentation",
-    text: "The whole thing is specified, not implied: edge cases considered, interactions defined, and the reasoning written down so the system can be tested against itself.",
+    title: "Reference-grade documentation",
+    text: "The complete reference, not an implication: a 439-entry Spell Directory and a full symbol glossary, specified so the system can be tested against itself.",
   },
 ];
 

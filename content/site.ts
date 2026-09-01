@@ -93,9 +93,9 @@ export const site: SiteConfig = {
 
   // Your Aether Codex site — the /codex/ page links out to it.
   codex: {
-    url: "https://aethercodex.org",
+    url: "https://www.aethercodex.org",
     blurb:
-      "The Aether Codex is a passion project standing entirely apart from my artwork: a fully custom, physics-based magic system, unique in its application. No hand-waving — the system is built from defined principles, with rules, costs, and constraints that hold up under scrutiny, and applications that emerge from the mechanics rather than being bolted on.\n\nIt's the technical side of concept work — proof that the discipline extends past the canvas into systems design, internal consistency, and rigorous documentation.",
+      "The Aether Codex is a passion project standing entirely apart from my artwork: a fully custom, layered-field hard-magic system, unique in its application. No hand-waving — it's built from foundations up through the Grand Unified Aether Equation, with rules, costs, and constraints that hold under scrutiny, and applications that emerge from the mechanics rather than being bolted on.\n\nIt's the technical side of concept work — proof that the discipline extends past the canvas into systems design, internal consistency, and reference-grade documentation.",
   },
 
   // Your bio for the about page. Replace with your own words whenever —
