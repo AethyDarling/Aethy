@@ -208,7 +208,7 @@ export default function HomePage() {
                 <span className="label-caps text-muted block mb-5">
                   Field entry 01
                 </span>
-                <span className="font-display text-4xl sm:text-5xl text-bone leading-none block">
+                <span className="font-display italic text-4xl sm:text-5xl text-bone leading-none block">
                   {specimen.name}
                 </span>
                 {specimen.species && (

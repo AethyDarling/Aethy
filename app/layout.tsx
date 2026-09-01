@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Cormorant, Inter, IBM_Plex_Mono } from "next/font/google";
 import { theme } from "@/content/theme";
 import { site } from "@/content/site";
 import { NsfwProvider } from "@/components/NsfwContext";
@@ -7,10 +7,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-// Display: Archivo — a sharp grotesque; weight/tracking are layered on by
-// the .font-display rule in globals.css. Body: Inter, quiet and neutral.
-const display = Archivo({
+// Display: Cormorant — a high-contrast garalde with engraved-plate
+// elegance, the typographic voice of the site's field-guide framing;
+// weight/tracking are layered on by the .font-display rule in
+// globals.css, and its italic carries specimen names. Body: Inter,
+// quiet and neutral, so the plates stay legible.
+const display = Cormorant({
   subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
   variable: "--font-display",
 });
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });

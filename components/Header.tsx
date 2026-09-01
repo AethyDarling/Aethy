@@ -26,7 +26,7 @@ export default function Header() {
       <div className="container-page h-16 md:h-20 flex items-center gap-6">
         <Link
           href="/"
-          className="font-display text-base tracking-[0.3em] text-bone shrink-0"
+          className="font-display text-xl tracking-[0.25em] text-bone shrink-0"
           onClick={() => setMenuOpen(false)}
         >
           AETHY

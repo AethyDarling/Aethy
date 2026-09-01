@@ -64,11 +64,12 @@ body {
   }
 }
 
-/* Display type is set tight and heavy — the font-family comes from the
-   Tailwind utility; this layers the editorial weight and tracking on top. */
+/* Display type — the font-family comes from the Tailwind utility; this
+   layers the engraved-plate setting on top: a solid semibold with the
+   serif's natural letterfit left alone. */
 .font-display {
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.005em;
 }
 
 /* Small tracked-caps annotation label. */
