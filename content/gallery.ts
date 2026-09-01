@@ -43,9 +43,10 @@ export type GalleryPiece = {
   /** true if this is an adult piece (hidden until the visitor confirms 18+), false if safe for everyone. EVERY adult piece MUST say true here. */
   nsfw: boolean;
   /**
-   * The credit line shown under the title — who it was for, e.g.
-   * "Client name — art director Jane Doe", or "Personal study" for your
-   * own work. Leave out for no credit line.
+   * Optional credit line under the title, for crediting the commissioner
+   * or client a piece was made for — e.g. "Commission for Client name" or
+   * "Client — art director Jane Doe". Left out, no line is shown; never
+   * use it to claim a design that belongs to someone else.
    */
   credit?: string;
   /** The id of the series this piece belongs to (see the `series` list). Leave out if it stands alone. */
@@ -119,7 +120,6 @@ export const gallery: GalleryPiece[] = [
     date: "2026-08",
     tags: ["character design", "wip"],
     nsfw: false,
-    credit: "Personal design",
     series: "crowned-figure",
   },
   {
@@ -130,7 +130,6 @@ export const gallery: GalleryPiece[] = [
     date: "2026-07",
     tags: ["character design", "wip"],
     nsfw: false,
-    credit: "Personal design",
     series: "crowned-figure",
   },
   {
@@ -141,7 +140,6 @@ export const gallery: GalleryPiece[] = [
     date: "2026-06",
     tags: ["anatomy", "illustration"],
     nsfw: false,
-    credit: "Personal study",
   },
   {
     file: "kneeling-reach.webp",
@@ -151,7 +149,6 @@ export const gallery: GalleryPiece[] = [
     date: "2026-05",
     tags: ["anatomy"],
     nsfw: false,
-    credit: "Personal study",
   },
   {
     file: "porcelain-bust.webp",
@@ -161,7 +158,6 @@ export const gallery: GalleryPiece[] = [
     date: "2026-04",
     tags: ["illustration"],
     nsfw: false,
-    credit: "Personal study",
   },
   {
     file: "leaping-figure.webp",
@@ -171,7 +167,6 @@ export const gallery: GalleryPiece[] = [
     date: "2026-03",
     tags: ["anatomy"],
     nsfw: false,
-    credit: "Personal study",
   },
   {
     file: "winged-creature-armor.webp",
@@ -181,7 +176,6 @@ export const gallery: GalleryPiece[] = [
     date: "2026-02",
     tags: ["character design", "reference sheet"],
     nsfw: false,
-    credit: "Personal design",
     series: "winged-creature",
   },
   {
@@ -192,7 +186,6 @@ export const gallery: GalleryPiece[] = [
     date: "2026-01",
     tags: ["character design", "reference sheet"],
     nsfw: false,
-    credit: "Personal design",
     series: "winged-creature",
   },
   {
@@ -203,7 +196,6 @@ export const gallery: GalleryPiece[] = [
     date: "2025-12",
     tags: ["anatomy", "wip"],
     nsfw: false,
-    credit: "Personal study",
   },
   {
     file: "drapery-study.webp",
@@ -213,7 +205,6 @@ export const gallery: GalleryPiece[] = [
     date: "2025-11",
     tags: ["anatomy", "illustration"],
     nsfw: false,
-    credit: "Personal study",
   },
   {
     file: "sitting-study.webp",
@@ -223,7 +214,6 @@ export const gallery: GalleryPiece[] = [
     date: "2025-10",
     tags: ["anatomy"],
     nsfw: false,
-    credit: "Personal study",
   },
 
   // Sketchbook — loose studies, kept deliberately rough.
@@ -234,7 +224,6 @@ export const gallery: GalleryPiece[] = [
     date: "2025-09",
     tags: ["sketchbook", "anatomy"],
     nsfw: false,
-    credit: "Sketchbook",
   },
   {
     file: "sketch-profile-headphones.webp",
@@ -243,7 +232,6 @@ export const gallery: GalleryPiece[] = [
     date: "2025-08",
     tags: ["sketchbook"],
     nsfw: false,
-    credit: "Sketchbook",
   },
   {
     file: "sketch-goblin-bust.webp",
@@ -252,6 +240,5 @@ export const gallery: GalleryPiece[] = [
     date: "2025-07",
     tags: ["sketchbook", "character design"],
     nsfw: false,
-    credit: "Sketchbook",
   },
 ];
