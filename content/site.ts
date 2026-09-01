@@ -46,8 +46,9 @@ export type SiteConfig = {
    */
   credits: string[];
   /**
-   * The Aether Codex — your external worldbuilding/concept site, showcased
-   * on its own page as concept work beyond the artwork itself.
+   * The Aether Codex — your physics-based magic system passion project,
+   * showcased on its own page as technical concept work outside the art
+   * sphere. It stands apart from the artwork and process pages entirely.
    */
   codex: {
     /** The codex's full web address, starting with https://. */
@@ -90,12 +91,11 @@ export const site: SiteConfig = {
   //   "Project title — character design (2025)",
   credits: [],
 
-  // Your Aether Codex site — the /codex/ page links out to it. Put the real
-  // address in url; until then the page shows a "link coming soon" state.
+  // Your Aether Codex site — the /codex/ page links out to it.
   codex: {
-    url: "https://EDIT-ME", // [EDIT ME] — the Aether Codex's address
+    url: "https://aethercodex.org",
     blurb:
-      "The Aether Codex is the worldbuilding companion to my artwork — the written and structural side of concept work. Settings, factions, species, and the systems that hold them together: the same inside-out construction I bring to a body, applied to a world.\n\nIt's proof that the concepting doesn't stop at the canvas — design thinking, lore architecture, and documentation are part of the same practice.",
+      "The Aether Codex is a passion project standing entirely apart from my artwork: a fully custom, physics-based magic system, unique in its application. No hand-waving — the system is built from defined principles, with rules, costs, and constraints that hold up under scrutiny, and applications that emerge from the mechanics rather than being bolted on.\n\nIt's the technical side of concept work — proof that the discipline extends past the canvas into systems design, internal consistency, and rigorous documentation.",
   },
 
   // Your bio for the about page. Replace with your own words whenever —

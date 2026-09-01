@@ -6,26 +6,26 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Aether Codex",
   description:
-    "The Aether Codex — Aethy's worldbuilding and concept-development work beyond the artwork: settings, species, and the systems that hold them together.",
+    "The Aether Codex — Aethy's fully custom, physics-based magic system: technical concept work outside the art sphere.",
 };
 
-// What the codex demonstrates, framed as concept-work disciplines — the
-// same "structure first" pitch as the art, applied off-canvas.
+// What the codex demonstrates — technical concept work, deliberately
+// separate from the artwork: this is systems design, not illustration.
 const facets = [
   {
     n: "01",
-    title: "Worldbuilding & lore architecture",
-    text: "Settings designed from the inside out — histories, factions, and rules that stay consistent under pressure, written to be built on.",
+    title: "Physics-first system design",
+    text: "Magic built the way physics is written: defined principles, costs, and constraints, with behavior derived from the rules instead of decreed case by case.",
   },
   {
     n: "02",
-    title: "Species & culture design",
-    text: "The thinking behind the bodies: how a species' anatomy, environment, and culture shape each other, documented before a single sheet is drawn.",
+    title: "Unique in its application",
+    text: "Not a reskinned spell list — the system's uses emerge from its mechanics, which is what makes them surprising and what keeps them consistent.",
   },
   {
     n: "03",
-    title: "Systems & documentation",
-    text: "Concept work a team can actually use — organized references, naming, and structure that make a world navigable for writers and artists alike.",
+    title: "Rigor & documentation",
+    text: "The whole thing is specified, not implied: edge cases considered, interactions defined, and the reasoning written down so the system can be tested against itself.",
   },
 ];
 
@@ -35,7 +35,7 @@ export default function CodexPage() {
 
   return (
     <div className="container-page pt-16 sm:pt-24">
-      <SectionHeading label="01 — Beyond the canvas" title="Aether Codex">
+      <SectionHeading label="01 — Technical concept work" title="Aether Codex">
         {linkReady && (
           <a
             href={url}
@@ -43,7 +43,7 @@ export default function CodexPage() {
             rel="noopener noreferrer"
             className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone shrink-0 mb-2"
           >
-            Open the codex ↗
+            aethercodex.org ↗
           </a>
         )}
       </SectionHeading>
@@ -65,7 +65,7 @@ export default function CodexPage() {
 
           <div className="mt-20">
             <Reveal>
-              <p className="label-caps text-muted mb-2">02 — What's inside</p>
+              <p className="label-caps text-muted mb-2">02 — What it demonstrates</p>
             </Reveal>
             <div className="border-t border-line max-w-2xl">
               {facets.map((f, i) => (
