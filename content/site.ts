@@ -141,11 +141,35 @@ export const site: SiteConfig = {
   // Drop the image files into public/art/featured/ first, then list them here.
   // Until this list has entries, the homepage shows labeled empty slots.
   featured: [
-    // 👉 Example — copy this block (without the // marks) once files exist:
-    // {
-    //   file: "ascension.webp",   // filename in public/art/featured/
-    //   title: "Ascension",       // its title
-    //   nsfw: false,              // keep featured pieces all-ages
-    // },
+    {
+      file: "crowned-figure-flats.webp",
+      title: "Crowned figure — flats",
+      nsfw: false,
+    },
+    {
+      file: "kneeling-reach.webp",
+      title: "Kneeling reach",
+      nsfw: false,
+    },
+    {
+      file: "porcelain-bust.webp",
+      title: "Porcelain bust",
+      nsfw: false,
+    },
+    {
+      file: "crowned-figure-construction.webp",
+      title: "Crowned figure — construction",
+      nsfw: false,
+    },
+    {
+      file: "amber-torso-study.webp",
+      title: "Amber torso study",
+      nsfw: false,
+    },
+    {
+      file: "leaping-figure.webp",
+      title: "Leaping figure",
+      nsfw: false,
+    },
   ],
 };
