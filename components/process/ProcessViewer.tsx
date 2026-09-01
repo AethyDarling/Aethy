@@ -77,7 +77,7 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
       <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
         <div>
           <p className="label-caps text-muted mb-3">
-            Breakdown — {stages.length} stages
+            Plate sequence — {stages.length} stages
           </p>
           <h2
             id={`${series.id}-title`}
