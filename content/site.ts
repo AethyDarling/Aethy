@@ -82,8 +82,8 @@ export const site: SiteConfig = {
   // One line used in page titles and link previews.
   tagline: "Freelance concept artist. Anatomy first, always.",
 
-  // The discipline line under your name, e.g. AETHY / Concept Art | Character Design.
-  roles: ["Concept Art", "Character Design", "Anatomy"],
+  // The discipline line under your name, e.g. AETHY / Concept Work | Anatomy.
+  roles: ["Concept Work", "Anatomy", "Realism"],
 
   // Selected clients / projects / credits. [] = the strip stays hidden.
   // Example entries once you have some:
@@ -98,9 +98,8 @@ export const site: SiteConfig = {
       "The Aether Codex is a passion project standing entirely apart from my artwork: a fully custom, layered-field hard-magic system, unique in its application. No hand-waving — it's built from foundations up through the Grand Unified Aether Equation, with rules, costs, and constraints that hold under scrutiny, and applications that emerge from the mechanics rather than being bolted on.\n\nIt's the technical side of concept work — proof that the discipline extends past the canvas into systems design, internal consistency, and reference-grade documentation.",
   },
 
-  // Your bio for the about page. Replace with your own words whenever —
-  // this placeholder leads with anatomy, as the site does.
-  bio: "I'm Aethy, a freelance concept artist working primarily in the furry community. Anatomy is the spine of everything I make: strong figure construction, honest musculature, and bodies that feel like they could stand up and walk off the page. Whether it's a creature study or a full character design, the drawing starts from the inside out — gesture, structure, mass, then contour.\n\n[EDIT ME — add a second paragraph about your workflow, history, and what you love to draw. This text lives in content/site.ts.]",
+  // Your bio for the about page.
+  bio: "I'm Aethy — a concept artist, 4+ years in the field, with a love for anatomy and realism in my work.",
 
   // The site's address.
   siteUrl: "https://aethy.studio",

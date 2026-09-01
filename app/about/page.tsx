@@ -6,31 +6,8 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Aethy — freelance concept artist known for anatomy: figure construction, musculature, and believable bodies.",
+    "About Aethy — concept artist, 4+ years in the field, with a love for anatomy and realism.",
 };
-
-const specialties = [
-  {
-    n: "01",
-    title: "Anatomy & figure construction",
-    text: "The signature. Gesture, skeleton, mass, contour — every body starts from structure, so every body holds up.",
-  },
-  {
-    n: "02",
-    title: "Character design",
-    text: "Anthro and creature design built to turn around: silhouettes that read, forms that a modeler or animator can trust.",
-  },
-  {
-    n: "03",
-    title: "Reference sheets",
-    text: "Clear, buildable references — proportions, views, and details laid out the way another artist needs them.",
-  },
-  {
-    n: "04",
-    title: "Illustration",
-    text: "Finished pieces where the underlying draftsmanship still shows through the paint.",
-  },
-];
 
 export default function AboutPage() {
   const mailto = `mailto:${site.email}?subject=${encodeURIComponent("Hello")}`;
@@ -69,23 +46,18 @@ export default function AboutPage() {
             </div>
           )}
 
-          <div className="mt-20">
-            <p className="label-caps text-muted mb-2">02 — Services</p>
-            <div className="border-t border-line max-w-2xl">
-              {specialties.map((s) => (
-                <div
-                  key={s.n}
-                  className="grid sm:grid-cols-[4rem_1fr] gap-x-6 gap-y-1 py-6 border-b border-line"
-                >
-                  <p className="font-mono text-[0.65rem] text-muted pt-1.5">{s.n}</p>
-                  <div>
-                    <h2 className="font-display text-xl sm:text-2xl text-bone mb-2">
-                      {s.title}
-                    </h2>
-                    <p className="text-muted text-sm leading-relaxed">{s.text}</p>
-                  </div>
-                </div>
-              ))}
+          <div className="mt-20 max-w-2xl">
+            <p className="label-caps text-muted pb-5 border-b border-line">
+              02 — What I do
+            </p>
+            <div className="py-6 border-b border-line">
+              <h2 className="font-display text-xl sm:text-2xl text-bone mb-2">
+                Concept work — only
+              </h2>
+              <p className="text-muted text-sm leading-relaxed">
+                Characters and creatures designed from the anatomy up, aimed at
+                realism.
+              </p>
             </div>
           </div>
         </Reveal>
