@@ -5,30 +5,31 @@
 // palette, and the timing/strength of the homepage hero animation.
 // Edit a value, save, redeploy — no component code needs touching.
 //
-// Colors are hex codes in quotes ("#d99a3d"). A good way to pick them:
+// Colors are hex codes in quotes ("#d9a03d"). A good way to pick them:
 // open one of your pieces, eyedropper a color, paste the hex here.
-// The palette below was sampled from the artwork currently in the repo
-// (dark umber fur, bone/paper light, amber-ochre, and that mint glow).
+// The palette below is a neutral graphite studio ground — near-black,
+// colorless, so the artwork supplies all the warmth and color — with a
+// single restrained brass accent.
 // =============================================================================
 
 export const theme = {
   colors: {
-    /** Page background — very dark, warm, so artwork pops. */
-    ink: "#141009",
+    /** Page background — near-black neutral graphite, so artwork carries the color. */
+    ink: "#0a0a0b",
     /** Slightly raised surfaces: cards, header, modals. */
-    surface: "#1d1712",
-    /** Hairline borders and construction lines. */
-    line: "#3a3128",
-    /** Primary text — warm bone/paper white. */
-    bone: "#eae0cf",
+    surface: "#121214",
+    /** Hairline borders and dividers. */
+    line: "#232326",
+    /** Primary text — crisp near-white. */
+    bone: "#f2f2f0",
     /** Secondary/dimmed text. */
-    muted: "#a3988a",
-    /** Primary accent — amber ochre (links, buttons, active states). */
-    amber: "#d99a3d",
-    /** Secondary accent — the mint glow from your character art (small highlights, focus rings, the 18+ marker). */
-    mint: "#8fe3c0",
+    muted: "#8e8e94",
+    /** Primary accent — restrained brass (links, buttons, active states). Used sparingly. */
+    amber: "#d0a24a",
+    /** Secondary accent — cool mint, functional only (focus rings, the 18+ marker). */
+    mint: "#7fd6ba",
     /** Deep rust — used sparingly (CLOSED badge, warnings). */
-    rust: "#a34d28",
+    rust: "#b0512e",
   },
 
   /**
@@ -37,7 +38,7 @@ export const theme = {
    */
   hero: {
     /** Color the line art draws in with. Use any hex, or one of the palette colors above. */
-    strokeColor: "#eae0cf",
+    strokeColor: "#f2f2f0",
     /** If true, every path in hero.svg is recolored to strokeColor. Set false to keep the SVG's own colors. */
     recolorStrokes: true,
     /** How long the whole draw-on takes (the SVG strokes, or the PNG stage reveals, share this budget). */

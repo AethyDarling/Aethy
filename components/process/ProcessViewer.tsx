@@ -61,10 +61,8 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
   // Adult series stay entirely unmounted until the visitor confirms 18+.
   if (series.nsfw && !showNsfw) {
     return (
-      <div className="border border-line bg-surface p-10 text-center">
-        <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-mint mb-3">
-          18+ series
-        </p>
+      <div className="border border-line p-10 text-center">
+        <p className="label-caps text-mint mb-4">18+ series</p>
         <p className="text-muted text-sm">
           Turn on the 18+ toggle in the header to view this breakdown.
         </p>
@@ -75,22 +73,22 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
   const current = stages[i];
 
   return (
-    <section aria-labelledby={`${series.id}-title`} className="mb-24">
-      <div className="flex flex-wrap items-end justify-between gap-4 mb-4">
+    <section aria-labelledby={`${series.id}-title`} className="mb-28 sm:mb-36">
+      <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
         <div>
-          <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-amber mb-2">
-            breakdown — {stages.length} stages
+          <p className="label-caps text-muted mb-3">
+            Breakdown — {stages.length} stages
           </p>
           <h2
             id={`${series.id}-title`}
-            className="font-display text-3xl text-bone"
+            className="font-display text-3xl sm:text-4xl text-bone"
           >
             {series.title}
           </h2>
         </div>
         <button
           onClick={() => (playing ? setPlaying(false) : play())}
-          className="font-mono text-[0.65rem] uppercase tracking-[0.2em] border border-amber text-amber px-4 py-2 hover:bg-amber hover:text-ink transition-colors"
+          className="font-mono text-[0.65rem] uppercase tracking-[0.2em] border border-bone text-bone px-5 py-2.5 hover:bg-bone hover:text-ink transition-colors"
           aria-label={playing ? "Pause the build-up" : "Play the build-up"}
         >
           {playing ? "❙❙ pause" : i >= last ? "↻ replay" : "▶ play build"}
@@ -98,7 +96,7 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
       </div>
 
       {series.intro && (
-        <p className="text-muted text-sm leading-relaxed max-w-2xl mb-6">
+        <p className="text-muted text-sm leading-relaxed max-w-2xl mb-8">
           {series.intro}
         </p>
       )}
@@ -136,10 +134,10 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
           </p>
         </div>
 
-        {/* Progress track: a construction rule that fills as the piece builds. */}
+        {/* Progress track: a hairline that fills as the piece builds. */}
         <div className="relative h-px bg-line" aria-hidden>
           <motion.div
-            className="absolute left-0 top-0 h-px bg-amber"
+            className="absolute left-0 top-0 h-px bg-bone"
             initial={false}
             animate={{ width: `${((i + 1) / stages.length) * 100}%` }}
             transition={{ duration: reduced ? 0 : 0.4, ease: "easeOut" }}
@@ -169,7 +167,7 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
               aria-current={idx === i ? "step" : undefined}
               className={`w-full text-left border transition-colors ${
                 idx === i
-                  ? "border-amber"
+                  ? "border-bone"
                   : "border-line hover:border-muted"
               }`}
             >
@@ -185,7 +183,7 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
               />
               <span
                 className={`block px-2 py-1.5 font-mono text-[0.6rem] uppercase tracking-[0.1em] ${
-                  idx === i ? "text-amber" : "text-muted"
+                  idx === i ? "text-bone" : "text-muted"
                 }`}
               >
                 {String(idx + 1).padStart(2, "0")} {s.name}

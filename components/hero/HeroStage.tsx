@@ -9,6 +9,8 @@ import {
   useTransform,
 } from "framer-motion";
 import { theme } from "@/content/theme";
+import { site } from "@/content/site";
+import { commissions } from "@/content/commissions";
 import MagneticButton from "@/components/MagneticButton";
 import DrawOnSvg from "./DrawOnSvg";
 import StagedReveal from "./StagedReveal";
@@ -119,38 +121,53 @@ export default function HeroStage({
         <HeroTicks pointerX={sx} pointerY={sy} />
       )}
 
-      <div className="relative max-w-6xl mx-auto px-5 min-h-[calc(100dvh-3.5rem)] grid lg:grid-cols-[5fr_6fr] items-center gap-10 py-16">
-        {/* Text block — minimal by design: name, role, one CTA. */}
+      <div className="relative container-page min-h-[60vh] lg:min-h-[68vh] grid lg:grid-cols-[5fr_5fr] items-center gap-12 py-16 lg:py-20">
+        {/* Identity block — the way senior artists' sites do it: name, a
+            discipline line, availability, one quiet action. The work itself
+            begins immediately below. */}
         <div className="relative z-10 order-2 lg:order-1 text-center lg:text-left">
           <motion.h1
-            className="font-display text-bone leading-none text-[clamp(4rem,14vw,9rem)] tracking-tight"
-            initial={reduced ? false : { opacity: 0, y: 28 }}
+            className="font-display text-bone leading-[0.95] text-[clamp(3rem,7vw,5.5rem)]"
+            initial={reduced ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: textDelay(0), ease: [0.22, 1, 0.36, 1] }}
           >
             AETHY
           </motion.h1>
           <motion.p
-            className="font-mono uppercase tracking-[0.45em] text-amber text-xs sm:text-sm mt-4 ml-1"
-            initial={reduced ? false : { opacity: 0, y: 16 }}
+            className="font-mono text-[0.7rem] sm:text-xs uppercase tracking-[0.25em] text-muted mt-5"
+            initial={reduced ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: textDelay(1), ease: [0.22, 1, 0.36, 1] }}
           >
-            Concept Artist
+            {site.roles.join("  |  ")}
           </motion.p>
           <motion.div
-            className="mt-10"
-            initial={reduced ? false : { opacity: 0, y: 16 }}
+            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 justify-center lg:justify-start"
+            initial={reduced ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: textDelay(2), ease: [0.22, 1, 0.36, 1] }}
           >
-            <MagneticButton href="/gallery/">View work</MagneticButton>
+            <span className="inline-flex items-center gap-2.5 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted">
+              <span
+                aria-hidden
+                className={`inline-block w-1.5 h-1.5 rounded-full ${
+                  commissions.commissionsOpen ? "bg-mint" : "bg-rust"
+                }`}
+              />
+              {commissions.commissionsOpen
+                ? "Available for freelance"
+                : "Books closed — inquiries welcome"}
+            </span>
+            <MagneticButton href="/commissions/" variant="outline">
+              Commissions
+            </MagneticButton>
           </motion.div>
         </div>
 
         {/* Figure centerpiece — the artist's own study, animated by code. */}
         <motion.div
-          className="relative z-[5] order-1 lg:order-2 h-[46vh] lg:h-[72vh]"
+          className="relative z-[5] order-1 lg:order-2 h-[38vh] lg:h-[54vh]"
           style={reduced ? undefined : { x: figX, y: figY }}
         >
           {/* Deeper parallax layers from featured art, behind the figure. */}
@@ -195,7 +212,7 @@ export default function HeroStage({
         </motion.div>
       </div>
 
-      {/* Bottom construction rule with proportion ticks. */}
+      {/* Bottom hairline. */}
       <div className="absolute bottom-0 left-0 right-0 rule-ticks" aria-hidden />
     </section>
   );

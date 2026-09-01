@@ -31,7 +31,7 @@ export default function CharacterIndex({
   }
 
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
       {visible.map((c, i) => {
         // Thumbnail must itself be SFW-safe: if the chosen thumbnail image
         // is flagged nsfw and the gate is off, fall back to any SFW image.
@@ -40,25 +40,24 @@ export default function CharacterIndex({
           c.images.find((img) => showNsfw || !img.nsfw);
         return (
           <Reveal key={c.folder} delay={i * 0.06}>
-            <Link
-              href={`/characters/${c.folder}/`}
-              className="trace relative block border border-line bg-surface"
-            >
-              {thumbEntry ? (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                  src={`/art/characters/${c.folder}/${thumbEntry.file}`}
-                  alt={`${c.name} — ${thumbEntry.label}`}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full aspect-[4/5] object-cover"
-                />
-              ) : (
-                <div className="art-slot aspect-[4/5]">
-                  <p>no SFW preview</p>
-                </div>
-              )}
-              <div className="px-4 py-3 flex items-baseline justify-between gap-3">
+            <Link href={`/characters/${c.folder}/`} className="group block">
+              <span className="trace relative block border border-line">
+                {thumbEntry ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={`/art/characters/${c.folder}/${thumbEntry.file}`}
+                    alt={`${c.name} — ${thumbEntry.label}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="trace-img w-full aspect-[4/5] object-cover"
+                  />
+                ) : (
+                  <span className="art-slot aspect-[4/5] block">
+                    <p>no SFW preview</p>
+                  </span>
+                )}
+              </span>
+              <span className="flex items-baseline justify-between gap-3 pt-3">
                 <span className="font-display text-lg text-bone">
                   {c.name}
                   {c.nsfw && (
@@ -68,11 +67,11 @@ export default function CharacterIndex({
                   )}
                 </span>
                 {c.species && !c.species.startsWith("[EDIT") && (
-                  <span className="font-mono text-[0.65rem] text-muted">
+                  <span className="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-muted">
                     {c.species}
                   </span>
                 )}
-              </div>
+              </span>
             </Link>
           </Reveal>
         );

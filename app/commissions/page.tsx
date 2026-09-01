@@ -27,20 +27,19 @@ export default function CommissionsPage() {
     Boolean(c.pricingSheetImage);
 
   return (
-    <div className="max-w-6xl mx-auto px-5 pt-14">
-      <SectionHeading fig="fig. 01 — work with me" title="Commissions">
-        <span
-          className={`inline-flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.2em] border px-3 py-1.5 mb-1 shrink-0 ${
-            open ? "border-mint text-mint" : "border-rust text-rust"
-          }`}
-        >
-          <span aria-hidden className={`w-2 h-2 ${open ? "bg-mint" : "bg-rust"}`} />
-          {open ? "open" : "closed"}
+    <div className="container-page pt-16 sm:pt-24">
+      <SectionHeading label="01 — Work with me" title="Commissions">
+        <span className="inline-flex items-center gap-2.5 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted mb-2 shrink-0">
+          <span
+            aria-hidden
+            className={`w-2 h-2 rounded-full ${open ? "bg-mint" : "bg-rust"}`}
+          />
+          {open ? "Open" : "Closed"}
         </span>
       </SectionHeading>
 
       <Reveal>
-        <p className="text-muted max-w-2xl leading-relaxed mb-12">
+        <p className="text-bone text-lg sm:text-xl leading-relaxed max-w-2xl mb-16 sm:mb-20">
           {open
             ? c.howToOrder
             : hasDetails
@@ -56,35 +55,39 @@ export default function CommissionsPage() {
           <img
             src={`/art/commissions/${c.pricingSheetImage}`}
             alt="Commission pricing sheet"
-            className="w-full border border-line mb-12"
+            className="w-full border border-line mb-16"
           />
         </Reveal>
       )}
 
       {/* Tiers — hidden until prices are written in content/commissions.ts */}
       {c.tiers.length > 0 && (
-        <div className="grid md:grid-cols-3 gap-4 mb-16">
+        <div className="grid md:grid-cols-3 gap-6 mb-20">
           {c.tiers.map((tier, i) => (
             <Reveal key={tier.name} delay={i * 0.08}>
-              <div className="trace relative border border-line bg-surface p-6 h-full flex flex-col">
-                <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-amber mb-2">
-                  tier {String(i + 1).padStart(2, "0")}
+              <div className="trace border border-line p-8 h-full flex flex-col">
+                <p className="font-mono text-[0.65rem] text-muted mb-4">
+                  {String(i + 1).padStart(2, "0")}
                 </p>
-                <h2 className="font-display text-2xl text-bone">{tier.name}</h2>
+                <h2 className="font-display text-2xl sm:text-3xl text-bone">
+                  {tier.name}
+                </h2>
                 {typeof tier.priceFrom === "number" ? (
-                  <p className="font-mono text-lg text-mint mt-1 mb-3">
+                  <p className="font-mono text-lg text-bone mt-2 mb-4">
                     {tier.currency ?? ""}
                     {tier.priceFrom}
-                    <span className="text-muted text-xs ml-1">from</span>
+                    <span className="text-muted text-xs ml-2 uppercase tracking-[0.1em]">
+                      from
+                    </span>
                   </p>
                 ) : tier.priceNote ? (
-                  <p className="font-mono text-sm text-mint mt-1 mb-3">
+                  <p className="font-mono text-sm text-muted mt-2 mb-4">
                     {tier.priceNote}
                   </p>
                 ) : (
-                  <span className="block mb-3" />
+                  <span className="block mb-4" />
                 )}
-                <p className="text-muted text-sm leading-relaxed mb-5">
+                <p className="text-muted text-sm leading-relaxed mb-6">
                   {tier.description}
                 </p>
                 <TierExamples examples={tier.examples} tierName={tier.name} />
@@ -94,19 +97,17 @@ export default function CommissionsPage() {
         </div>
       )}
 
-      {/* Will / won't draw — each card appears only once it has entries */}
+      {/* Will / won't draw — each column appears only once it has entries */}
       {(c.willDraw.length > 0 || c.wontDraw.length > 0) && (
-        <div className="grid md:grid-cols-2 gap-4 mb-16">
+        <div className="grid md:grid-cols-2 gap-x-16 gap-y-10 mb-20 max-w-4xl">
           {c.willDraw.length > 0 && (
             <Reveal>
-              <div className="border border-line p-6 h-full">
-                <h2 className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-mint mb-4">
-                  I will draw
-                </h2>
-                <ul className="space-y-2">
+              <div className="border-t border-line pt-6">
+                <h2 className="label-caps text-bone mb-6">I will draw</h2>
+                <ul className="space-y-3">
                   {c.willDraw.map((item) => (
-                    <li key={item} className="text-sm text-bone flex gap-3">
-                      <span aria-hidden className="text-mint">＋</span>
+                    <li key={item} className="text-sm text-muted flex gap-4">
+                      <span aria-hidden className="text-bone">＋</span>
                       {item}
                     </li>
                   ))}
@@ -116,13 +117,11 @@ export default function CommissionsPage() {
           )}
           {c.wontDraw.length > 0 && (
             <Reveal delay={0.08}>
-              <div className="border border-line p-6 h-full">
-                <h2 className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-rust mb-4">
-                  I won't draw
-                </h2>
-                <ul className="space-y-2">
+              <div className="border-t border-line pt-6">
+                <h2 className="label-caps text-rust mb-6">I won't draw</h2>
+                <ul className="space-y-3">
                   {c.wontDraw.map((item) => (
-                    <li key={item} className="text-sm text-bone flex gap-3">
+                    <li key={item} className="text-sm text-muted flex gap-4">
                       <span aria-hidden className="text-rust">－</span>
                       {item}
                     </li>
@@ -137,11 +136,11 @@ export default function CommissionsPage() {
       {/* Terms — hidden until written */}
       {c.terms.length > 0 && (
         <Reveal>
-          <SectionHeading fig="fig. 02 — the fine print" title="Terms of service" />
-          <ol className="max-w-2xl space-y-3 mb-16">
+          <SectionHeading label="02 — The fine print" title="Terms" />
+          <ol className="max-w-2xl space-y-4 mb-20">
             {c.terms.map((t, i) => (
-              <li key={t} className="flex gap-4 text-sm text-muted leading-relaxed">
-                <span className="font-mono text-[0.65rem] text-amber pt-0.5 shrink-0">
+              <li key={t} className="flex gap-5 text-sm text-muted leading-relaxed">
+                <span className="font-mono text-[0.65rem] text-bone pt-0.5 shrink-0">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 {t}
@@ -153,21 +152,23 @@ export default function CommissionsPage() {
 
       {/* Contact CTA */}
       <Reveal>
-        <div className="border border-amber p-8 sm:p-10 text-center mb-4">
-          <h2 className="font-display text-2xl text-bone mb-2">
-            {open ? "Ready when you are" : "For when I reopen"}
+        <div className="border border-line py-16 sm:py-24 px-8 text-center">
+          <p className="label-caps text-muted mb-6">
+            {open ? "Booking now" : "For when I reopen"}
+          </p>
+          <h2 className="font-display text-4xl sm:text-6xl text-bone leading-[0.95] mb-6">
+            {open ? "Ready when you are" : "Get in line early"}
           </h2>
-          <p className="text-muted text-sm mb-6">
-            {site.email} —{" "}
+          <p className="text-muted text-sm mb-10 max-w-md mx-auto leading-relaxed">
             {c.tiers.length > 0
-              ? "include references and the tier you're after."
-              : "send references and what you have in mind, and I'll quote it."}
+              ? "Include references and the tier you're after."
+              : "Send references and what you have in mind, and I'll quote it."}
           </p>
           <a
             href={mailto}
-            className="inline-block border border-amber text-amber font-mono text-xs uppercase tracking-[0.25em] px-8 py-4 hover:bg-amber hover:text-ink transition-colors"
+            className="inline-block border border-bone bg-bone text-ink font-mono text-xs uppercase tracking-[0.25em] px-10 py-4 hover:bg-transparent hover:text-bone transition-colors"
           >
-            Email me
+            {site.email}
           </a>
         </div>
       </Reveal>

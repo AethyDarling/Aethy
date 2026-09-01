@@ -34,6 +34,27 @@ export type SiteConfig = {
   artistName: string;
   /** The one-line tagline used in page metadata and the footer (the hero itself stays wordless beyond your name). */
   tagline: string;
+  /**
+   * Your disciplines, shown as the "Concept Art | Character Design | …" line
+   * under your name (the way senior artists' sites do it). 2–5 short entries.
+   */
+  roles: string[];
+  /**
+   * Selected clients / projects / credits, shown as a credibility strip on
+   * the homepage and about page — e.g. "Indie VN — character art (2025)".
+   * Leave [] to hide the section entirely until you have entries.
+   */
+  credits: string[];
+  /**
+   * The Aether Codex — your external worldbuilding/concept site, showcased
+   * on its own page as concept work beyond the artwork itself.
+   */
+  codex: {
+    /** The codex's full web address, starting with https://. */
+    url: string;
+    /** A paragraph (or two, with \n\n between) introducing what's there. */
+    blurb: string;
+  };
   /** Your longer bio for the about section — a paragraph or two, all inside the quotes. Use \n\n for a paragraph break. */
   bio: string;
   /** The site's web address (used for sharing links and previews). */
@@ -59,6 +80,23 @@ export const site: SiteConfig = {
 
   // One line used in page titles and link previews.
   tagline: "Freelance concept artist. Anatomy first, always.",
+
+  // The discipline line under your name, e.g. AETHY / Concept Art | Character Design.
+  roles: ["Concept Art", "Character Design", "Anatomy"],
+
+  // Selected clients / projects / credits. [] = the strip stays hidden.
+  // Example entries once you have some:
+  //   "Client or studio name — what you did",
+  //   "Project title — character design (2025)",
+  credits: [],
+
+  // Your Aether Codex site — the /codex/ page links out to it. Put the real
+  // address in url; until then the page shows a "link coming soon" state.
+  codex: {
+    url: "https://EDIT-ME", // [EDIT ME] — the Aether Codex's address
+    blurb:
+      "The Aether Codex is the worldbuilding companion to my artwork — the written and structural side of concept work. Settings, factions, species, and the systems that hold them together: the same inside-out construction I bring to a body, applied to a world.\n\nIt's proof that the concepting doesn't stop at the canvas — design thinking, lore architecture, and documentation are part of the same practice.",
+  },
 
   // Your bio for the about page. Replace with your own words whenever —
   // this placeholder leads with anatomy, as the site does.

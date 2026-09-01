@@ -15,9 +15,12 @@ import {
 export default function MagneticButton({
   href,
   children,
+  variant = "solid",
 }: {
   href: string;
   children: React.ReactNode;
+  /** "solid" = filled bone (the primary action); "outline" = hairline. */
+  variant?: "solid" | "outline";
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -47,7 +50,11 @@ export default function MagneticButton({
     >
       <Link
         href={href}
-        className="inline-block border border-amber text-amber font-mono text-xs uppercase tracking-[0.25em] px-8 py-4 hover:bg-amber hover:text-ink transition-colors"
+        className={`inline-block font-mono text-xs uppercase tracking-[0.25em] px-8 py-4 border transition-colors ${
+          variant === "solid"
+            ? "border-bone bg-bone text-ink hover:bg-transparent hover:text-bone"
+            : "border-line text-bone hover:border-bone"
+        }`}
       >
         {children}
       </Link>

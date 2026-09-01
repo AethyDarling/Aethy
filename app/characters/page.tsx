@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function CharactersPage() {
   return (
-    <div className="max-w-6xl mx-auto px-5 pt-14">
-      <SectionHeading fig="fig. 01 — the cast" title="Characters" />
+    <div className="container-page pt-16 sm:pt-24">
+      <SectionHeading label="01 — The cast" title="Characters" />
       <CharacterIndex characters={characters} />
     </div>
   );

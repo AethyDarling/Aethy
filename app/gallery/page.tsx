@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <div className="max-w-6xl mx-auto px-5 pt-14">
-      <SectionHeading fig="fig. 01 — the work" title="Gallery" />
+    <div className="container-page pt-16 sm:pt-24">
+      <SectionHeading label="01 — Complete works" title="Work" />
       <GalleryClient pieces={gallery} />
     </div>
   );
