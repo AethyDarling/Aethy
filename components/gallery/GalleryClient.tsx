@@ -60,9 +60,9 @@ export default function GalleryClient({ pieces }: { pieces: GalleryPiece[] }) {
 
   return (
     <>
-      {/* Filter row */}
+      {/* Filter row — plain tracked-caps text, underline marks the active one. */}
       <div
-        className="flex flex-wrap gap-2 mb-8"
+        className="flex flex-wrap gap-x-7 gap-y-3 mb-12"
         role="toolbar"
         aria-label="Filter by category"
       >
@@ -71,10 +71,10 @@ export default function GalleryClient({ pieces }: { pieces: GalleryPiece[] }) {
             key={tag}
             onClick={() => setActiveTag(tag)}
             aria-pressed={activeTag === tag}
-            className={`font-mono text-[0.65rem] uppercase tracking-[0.15em] border px-3 py-1.5 transition-colors ${
+            className={`font-mono text-[0.65rem] uppercase tracking-[0.2em] pb-1 border-b transition-colors ${
               activeTag === tag
-                ? "border-amber bg-amber text-ink"
-                : "border-line text-muted hover:border-amber hover:text-amber"
+                ? "border-bone text-bone"
+                : "border-transparent text-muted hover:text-bone"
             }`}
           >
             {tag}
@@ -83,7 +83,7 @@ export default function GalleryClient({ pieces }: { pieces: GalleryPiece[] }) {
       </div>
 
       {/* Masonry columns */}
-      <motion.div layout className="columns-1 sm:columns-2 lg:columns-3 gap-4">
+      <motion.div layout className="columns-1 sm:columns-2 lg:columns-3 gap-6">
         <AnimatePresence mode="popLayout">
           {visible.map((p, i) => (
             <motion.figure
@@ -93,27 +93,29 @@ export default function GalleryClient({ pieces }: { pieces: GalleryPiece[] }) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="mb-4 break-inside-avoid"
+              className="mb-10 break-inside-avoid"
             >
               <button
                 onClick={() => setLightboxIndex(i)}
-                className="trace relative block w-full text-left border border-line bg-surface group"
+                className="block w-full text-left group"
                 aria-label={`Open ${p.title}`}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={`/art/gallery/${p.file}`}
-                  alt={p.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full block"
-                />
-                {p.nsfw && (
-                  <span className="absolute top-2 right-2 font-mono text-[0.6rem] uppercase tracking-[0.15em] bg-ink text-mint border border-mint px-1.5 py-0.5">
-                    18+
-                  </span>
-                )}
-                <figcaption className="flex items-baseline justify-between gap-3 px-3 py-2.5">
+                <span className="trace relative block border border-line">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`/art/gallery/${p.file}`}
+                    alt={p.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="trace-img w-full block"
+                  />
+                  {p.nsfw && (
+                    <span className="absolute top-2 right-2 font-mono text-[0.6rem] uppercase tracking-[0.15em] bg-ink text-mint border border-mint px-1.5 py-0.5">
+                      18+
+                    </span>
+                  )}
+                </span>
+                <figcaption className="flex items-baseline justify-between gap-3 pt-3">
                   <span className="text-sm text-bone">{p.title}</span>
                   <span className="font-mono text-[0.6rem] text-muted shrink-0">
                     {p.date}

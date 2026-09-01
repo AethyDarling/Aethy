@@ -36,12 +36,12 @@ export default async function CharacterPage({
   if (!character) notFound();
 
   return (
-    <div className="max-w-6xl mx-auto px-5 pt-14">
+    <div className="container-page pt-16 sm:pt-24">
       <Link
         href="/characters/"
-        className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-amber"
+        className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone"
       >
-        ← all characters
+        ← All characters
       </Link>
       <CharacterDetail character={character} />
     </div>

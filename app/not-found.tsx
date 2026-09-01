@@ -2,19 +2,18 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="max-w-6xl mx-auto px-5 py-32 text-center">
-      <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-amber mb-4">
-        fig. 404 — reference not found
+    <div className="container-page py-32 sm:py-40 text-center">
+      <p className="label-caps text-muted mb-6">404 — Page not found</p>
+      <h1 className="font-display text-6xl sm:text-8xl text-bone leading-[0.95]">
+        Lost the line
+      </h1>
+      <p className="text-muted text-sm mt-6 mb-12 max-w-md mx-auto leading-relaxed">
+        This page doesn&rsquo;t exist. Head back to the studio and start again
+        from the gesture.
       </p>
-      <h1 className="font-display text-6xl sm:text-8xl text-bone">Lost the line</h1>
-      <p className="text-muted text-sm mt-5 mb-10 max-w-md mx-auto leading-relaxed">
-        This page doesn't exist — like a figure drawn without construction,
-        there's nothing underneath. Head back and start from the gesture.
-      </p>
-      <div className="rule-ticks max-w-xs mx-auto mb-10" aria-hidden />
       <Link
         href="/"
-        className="inline-block border border-amber text-amber font-mono text-xs uppercase tracking-[0.25em] px-8 py-4 hover:bg-amber hover:text-ink transition-colors"
+        className="inline-block border border-bone bg-bone text-ink font-mono text-xs uppercase tracking-[0.25em] px-8 py-4 hover:bg-transparent hover:text-bone transition-colors"
       >
         Back to the studio
       </Link>

@@ -9,6 +9,8 @@ import {
   useTransform,
 } from "framer-motion";
 import { theme } from "@/content/theme";
+import { site } from "@/content/site";
+import { commissions } from "@/content/commissions";
 import MagneticButton from "@/components/MagneticButton";
 import DrawOnSvg from "./DrawOnSvg";
 import StagedReveal from "./StagedReveal";
@@ -119,11 +121,19 @@ export default function HeroStage({
         <HeroTicks pointerX={sx} pointerY={sy} />
       )}
 
-      <div className="relative max-w-6xl mx-auto px-5 min-h-[calc(100dvh-3.5rem)] grid lg:grid-cols-[5fr_6fr] items-center gap-10 py-16">
-        {/* Text block — minimal by design: name, role, one CTA. */}
+      <div className="relative container-page min-h-[calc(100dvh-5rem)] grid lg:grid-cols-[6fr_5fr] items-center gap-12 py-20 lg:py-24">
+        {/* Text block — name, role, one line of positioning, two actions. */}
         <div className="relative z-10 order-2 lg:order-1 text-center lg:text-left">
+          <motion.p
+            className="label-caps text-muted"
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: textDelay(0), ease: [0.22, 1, 0.36, 1] }}
+          >
+            Concept artist — character design &amp; anatomy
+          </motion.p>
           <motion.h1
-            className="font-display text-bone leading-none text-[clamp(4rem,14vw,9rem)] tracking-tight"
+            className="font-display text-bone leading-[0.9] text-[clamp(4.5rem,15vw,11rem)] mt-6"
             initial={reduced ? false : { opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: textDelay(0), ease: [0.22, 1, 0.36, 1] }}
@@ -131,21 +141,40 @@ export default function HeroStage({
             AETHY
           </motion.h1>
           <motion.p
-            className="font-mono uppercase tracking-[0.45em] text-amber text-xs sm:text-sm mt-4 ml-1"
+            className="text-muted text-base sm:text-lg leading-relaxed max-w-md mt-8 mx-auto lg:mx-0"
             initial={reduced ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: textDelay(1), ease: [0.22, 1, 0.36, 1] }}
           >
-            Concept Artist
+            {site.tagline}
           </motion.p>
           <motion.div
-            className="mt-10"
+            className="mt-12 flex flex-wrap items-center gap-4 justify-center lg:justify-start"
             initial={reduced ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: textDelay(2), ease: [0.22, 1, 0.36, 1] }}
           >
             <MagneticButton href="/gallery/">View work</MagneticButton>
+            <MagneticButton href="/commissions/" variant="outline">
+              Commissions
+            </MagneticButton>
           </motion.div>
+          <motion.p
+            className="mt-12 inline-flex items-center gap-2.5 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted"
+            initial={reduced ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: textDelay(3), ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span
+              aria-hidden
+              className={`inline-block w-1.5 h-1.5 rounded-full ${
+                commissions.commissionsOpen ? "bg-mint" : "bg-rust"
+              }`}
+            />
+            {commissions.commissionsOpen
+              ? "Currently available for freelance"
+              : "Books closed — inquiries welcome"}
+          </motion.p>
         </div>
 
         {/* Figure centerpiece — the artist's own study, animated by code. */}
@@ -195,7 +224,7 @@ export default function HeroStage({
         </motion.div>
       </div>
 
-      {/* Bottom construction rule with proportion ticks. */}
+      {/* Bottom hairline. */}
       <div className="absolute bottom-0 left-0 right-0 rule-ticks" aria-hidden />
     </section>
   );

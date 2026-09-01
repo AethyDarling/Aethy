@@ -124,7 +124,7 @@ export default function Lightbox({
               </h2>
               <p className="font-mono text-[0.65rem] text-muted">{piece.date}</p>
               {piece.tags.length > 0 && (
-                <p className="font-mono text-[0.65rem] uppercase tracking-[0.1em] text-amber">
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.1em] text-muted">
                   {piece.tags.join(" · ")}
                 </p>
               )}
@@ -148,7 +148,7 @@ function NavArrow({ dir, onClick }: { dir: 1 | -1; onClick: () => void }) {
       aria-label={dir === 1 ? "Next piece" : "Previous piece"}
       className={`absolute top-1/2 -translate-y-1/2 ${
         dir === 1 ? "right-2 sm:right-5" : "left-2 sm:left-5"
-      } border border-line bg-ink text-muted hover:text-amber hover:border-amber p-3 transition-colors`}
+      } border border-line bg-ink text-muted hover:text-bone hover:border-bone p-3 transition-colors`}
     >
       <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden>
         <path

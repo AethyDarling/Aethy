@@ -15,10 +15,8 @@ export default function CharacterDetail({ character }: { character: Character })
 
   if (c.nsfw && !showNsfw) {
     return (
-      <div className="border border-line bg-surface p-10 mt-8 text-center max-w-xl mx-auto">
-        <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-mint mb-3">
-          18+ character
-        </p>
+      <div className="border border-line p-10 mt-10 text-center max-w-xl mx-auto">
+        <p className="label-caps text-mint mb-4">18+ character</p>
         <p className="text-muted text-sm leading-relaxed mb-6">
           This character's page is adult-only. Turn on the 18+ toggle to view it.
         </p>
@@ -39,7 +37,7 @@ export default function CharacterDetail({ character }: { character: Character })
     : c.description;
 
   return (
-    <div className="grid lg:grid-cols-[7fr_5fr] gap-10 mt-8">
+    <div className="grid lg:grid-cols-[7fr_4fr] gap-12 lg:gap-16 mt-10">
       {/* Image viewer */}
       <div>
         {current ? (
@@ -74,7 +72,7 @@ export default function CharacterDetail({ character }: { character: Character })
                 aria-label={`View ${img.label}`}
                 aria-current={i === active}
                 className={`relative border transition-colors ${
-                  i === active ? "border-amber" : "border-line hover:border-muted"
+                  i === active ? "border-bone" : "border-line hover:border-muted"
                 }`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -98,13 +96,15 @@ export default function CharacterDetail({ character }: { character: Character })
 
       {/* Name, species, lore */}
       <Reveal>
-        <div className="lg:sticky lg:top-20">
-          <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-amber mb-2">
-            character file
-          </p>
-          <h1 className="font-display text-4xl sm:text-5xl text-bone">{c.name}</h1>
+        <div className="lg:sticky lg:top-28">
+          <p className="label-caps text-muted mb-4">Character file</p>
+          <h1 className="font-display text-5xl sm:text-6xl text-bone leading-[0.95]">
+            {c.name}
+          </h1>
           {c.species && !c.species.startsWith("[EDIT") && (
-            <p className="font-mono text-sm text-mint mt-2">{c.species}</p>
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-muted mt-4">
+              {c.species}
+            </p>
           )}
           <div className="rule-ticks my-6" aria-hidden />
           <div className="text-muted text-sm leading-relaxed space-y-4">

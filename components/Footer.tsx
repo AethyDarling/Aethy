@@ -3,28 +3,48 @@ import { site } from "@/content/site";
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-line mt-24">
-      <div className="max-w-6xl mx-auto px-5 py-10 flex flex-col sm:flex-row gap-6 sm:items-center sm:justify-between">
-        <div>
-          <p className="font-display text-lg text-bone">AETHY</p>
-          <p className="text-muted text-xs mt-1">{site.tagline}</p>
-        </div>
-        <nav aria-label="Social links" className="flex flex-wrap gap-x-5 gap-y-2">
-          {site.socials.map((s) => (
+    <footer className="border-t border-line mt-24 sm:mt-32">
+      <div className="container-page py-14 sm:py-20">
+        <div className="grid md:grid-cols-[1fr_auto] gap-10 md:items-start">
+          <div>
+            <p className="font-display text-2xl tracking-[0.2em] text-bone">
+              AETHY
+            </p>
+            <p className="text-muted text-sm mt-3 max-w-sm leading-relaxed">
+              {site.tagline}
+            </p>
             <a
-              key={s.label}
-              href={s.url}
-              target={s.url.startsWith("mailto:") ? undefined : "_blank"}
-              rel="noopener noreferrer"
-              className="draw-link text-sm text-muted hover:text-amber transition-colors"
+              href={`mailto:${site.email}`}
+              className="draw-link inline-block font-mono text-sm tracking-[0.1em] text-bone mt-6"
             >
-              {s.label}
+              {site.email}
             </a>
-          ))}
-        </nav>
-        <p className="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-muted">
-          © {year} {site.artistName} — all artwork mine, do not repost
-        </p>
+          </div>
+          <nav
+            aria-label="Social links"
+            className="flex md:flex-col flex-wrap gap-x-6 gap-y-3 md:text-right"
+          >
+            {site.socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.url}
+                target={s.url.startsWith("mailto:") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone transition-colors"
+              >
+                {s.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+        <div className="flex flex-wrap items-baseline justify-between gap-4 border-t border-line mt-12 pt-6">
+          <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+            © {year} {site.artistName}
+          </p>
+          <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+            All artwork mine — do not repost
+          </p>
+        </div>
       </div>
     </footer>
   );

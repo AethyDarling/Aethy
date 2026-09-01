@@ -5,25 +5,25 @@
 /* Palette values are injected on <html> by app/layout.tsx from content/theme.ts.
    Edit colors THERE — these are only fallbacks so the page never renders unstyled. */
 :root {
-  --c-ink: #141009;
-  --c-surface: #1d1712;
-  --c-line: #3a3128;
-  --c-bone: #eae0cf;
-  --c-muted: #a3988a;
-  --c-amber: #d99a3d;
-  --c-mint: #8fe3c0;
-  --c-rust: #a34d28;
+  --c-ink: #0a0a0b;
+  --c-surface: #121214;
+  --c-line: #232326;
+  --c-bone: #f2f2f0;
+  --c-muted: #8e8e94;
+  --c-amber: #d0a24a;
+  --c-mint: #7fd6ba;
+  --c-rust: #b0512e;
 
   /* Same colors as "R G B" channels — Tailwind opacity modifiers
      (bg-ink/95 …) need this form. layout.tsx overrides both sets. */
-  --c-ink-rgb: 20 16 9;
-  --c-surface-rgb: 29 23 18;
-  --c-line-rgb: 58 49 40;
-  --c-bone-rgb: 234 224 207;
-  --c-muted-rgb: 163 152 138;
-  --c-amber-rgb: 217 154 61;
-  --c-mint-rgb: 143 227 192;
-  --c-rust-rgb: 163 77 40;
+  --c-ink-rgb: 10 10 11;
+  --c-surface-rgb: 18 18 20;
+  --c-line-rgb: 35 35 38;
+  --c-bone-rgb: 242 242 240;
+  --c-muted-rgb: 142 142 148;
+  --c-amber-rgb: 208 162 74;
+  --c-mint-rgb: 127 214 186;
+  --c-rust-rgb: 176 81 46;
 }
 
 html {
@@ -34,13 +34,12 @@ html {
 body {
   background: var(--c-ink);
   color: var(--c-bone);
-  font-feature-settings: "ss01" on;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--c-amber);
+  background: var(--c-bone);
   color: var(--c-ink);
 }
 
@@ -49,55 +48,62 @@ body {
   outline-offset: 2px;
 }
 
-/* ---- Anatomy-notebook UI language ---------------------------------------- */
+/* ---- Portfolio UI language --------------------------------------------- */
 
-/* Fine construction rule with proportion tick marks, used between sections. */
+/* The site-wide page container: wide, with generous gutters, so layouts
+   breathe like a printed portfolio spread. */
+.container-page {
+  width: 100%;
+  max-width: 90rem; /* 1440px */
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 3rem;
+  }
+}
+
+/* Display type is set tight and heavy — the font-family comes from the
+   Tailwind utility; this layers the editorial weight and tracking on top. */
+.font-display {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Small tracked-caps annotation label. */
+.label-caps {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+}
+
+/* Legacy name kept for convenience: now a clean hairline divider. */
 .rule-ticks {
-  position: relative;
   height: 1px;
   background: var(--c-line);
 }
-.rule-ticks::before,
-.rule-ticks::after {
-  content: "";
-  position: absolute;
-  top: -3px;
-  width: 1px;
-  height: 7px;
-  background: var(--c-line);
-}
-.rule-ticks::before { left: 33.333%; }
-.rule-ticks::after { left: 66.666%; }
 
-/* Contour-trace hover: two hairlines draw around the element's border.
-   Pure flat color, no glow. Apply .trace to a relatively-positioned card. */
-.trace::before,
-.trace::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border: 1px solid transparent;
+/* Hover treatment for artwork tiles: the image sharpens up to full
+   brightness and the hairline frame lifts to bone. Apply .trace to the
+   tile; give the <img> the .trace-img class. */
+.trace {
+  transition: border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.trace::before {
-  border-top-color: var(--c-amber);
-  border-right-color: var(--c-amber);
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+.trace .trace-img {
+  filter: brightness(0.92);
+  transition:
+    filter 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.trace::after {
-  border-bottom-color: var(--c-amber);
-  border-left-color: var(--c-amber);
-  clip-path: inset(0 0 100% 0);
-  transition: clip-path 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+.trace:hover,
+.trace:focus-within {
+  border-color: var(--c-muted);
 }
-.trace:hover::before,
-.trace:focus-within::before {
-  clip-path: inset(0 0 0 0);
-}
-.trace:hover::after,
-.trace:focus-within::after {
-  clip-path: inset(0 0 0 0);
+.trace:hover .trace-img,
+.trace:focus-within .trace-img {
+  filter: brightness(1);
 }
 
 /* Link underline that draws in from the left. */
@@ -120,6 +126,24 @@ body {
 .draw-link:hover::after,
 .draw-link:focus-visible::after {
   transform: scaleX(1);
+}
+
+/* Index rows — the big list navigation on the homepage. The arrow slides
+   in and the row text lifts to full brightness on hover. */
+.index-row {
+  transition: background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.index-row .index-arrow {
+  opacity: 0;
+  transform: translateX(-0.5rem);
+  transition:
+    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.index-row:hover .index-arrow,
+.index-row:focus-visible .index-arrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Flat labeled slot for artwork that hasn't been supplied yet. */

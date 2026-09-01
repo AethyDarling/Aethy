@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
+import { Archivo, Inter, IBM_Plex_Mono } from "next/font/google";
 import { theme } from "@/content/theme";
 import { site } from "@/content/site";
 import { NsfwProvider } from "@/components/NsfwContext";
@@ -7,12 +7,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-const display = Fraunces({
+// Display: Archivo — a sharp grotesque; weight/tracking are layered on by
+// the .font-display rule in globals.css. Body: Inter, quiet and neutral.
+const display = Archivo({
   subsets: ["latin"],
   variable: "--font-display",
-  axes: ["opsz"],
 });
-const sans = Space_Grotesk({ subsets: ["latin"], variable: "--font-sans" });
+const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],

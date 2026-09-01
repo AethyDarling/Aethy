@@ -13,9 +13,12 @@ export const metadata: Metadata = {
 
 export default function ProcessPage() {
   return (
-    <div className="max-w-5xl mx-auto px-5 pt-14">
-      <SectionHeading fig="fig. 01 — how it's built" title="Process">
-        <Link href="/gallery/" className="draw-link text-sm text-amber shrink-0 mb-1">
+    <div className="max-w-6xl mx-auto px-6 md:px-10 pt-16 sm:pt-24">
+      <SectionHeading label="01 — How it's built" title="Process">
+        <Link
+          href="/gallery/"
+          className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone shrink-0 mb-2"
+        >
           Finished work →
         </Link>
       </SectionHeading>
