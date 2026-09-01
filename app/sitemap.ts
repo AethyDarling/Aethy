@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
 import { characters } from "@/content/characters";
+import { series } from "@/content/gallery";
 
 export const dynamic = "force-static";
 
@@ -22,5 +23,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${base}/characters/${c.folder}/`,
       lastModified: now,
     }));
-  return [...staticPages, ...characterPages];
+  const seriesPages = series.map((s) => ({
+    url: `${base}/series/${s.id}/`,
+    lastModified: now,
+  }));
+  return [...staticPages, ...characterPages, ...seriesPages];
 }

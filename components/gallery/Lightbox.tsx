@@ -122,6 +122,11 @@ export default function Lightbox({
                   </span>
                 )}
               </h2>
+              {piece.credit && (
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-muted">
+                  {piece.credit}
+                </p>
+              )}
               <p className="font-mono text-[0.65rem] text-muted">{piece.date}</p>
               {piece.tags.length > 0 && (
                 <p className="font-mono text-[0.65rem] uppercase tracking-[0.1em] text-muted">
