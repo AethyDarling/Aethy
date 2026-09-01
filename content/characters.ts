@@ -57,11 +57,11 @@ export const characters: Character[] = [
     name: "Aethy",
 
     // Species shown under the name. [EDIT ME]
-    species: "[EDIT ME — species]",
+    species: "Proto Gal!",
 
     // Their introduction. Multiple paragraphs are fine; keep it all inside
     // the quotes and use \n\n for a paragraph break. [EDIT ME]
-    description: "[EDIT ME — who is Aethy? Add their story and lore here. This text lives in content/characters.ts.]",
+    description: "Aethy is my main mascot, she has been here to help my anatomy development for the last few years!",
 
     // Filename (from the images list below) used as the thumbnail on the characters page.
     thumbnail: "aethy-character-example-7.webp",
@@ -97,30 +97,14 @@ export const characters: Character[] = [
         nsfw: false,
       },
       {
-        file: "aethy-character-example-1.webp",
-        label: "Crawl piece — gesture",
-        nsfw: false,
-      },
-      {
-        file: "aethy-character-example-2.webp",
-        label: "Crawl piece — refined lines",
-        nsfw: false,
-      },
-      {
-        file: "aethy-character-example-3.webp",
-        label: "Crawl piece — flats",
-        nsfw: false,
-      },
-      {
-        file: "aethy-character-example-4.webp",
-        label: "Crawl piece — face light",
-        nsfw: false,
-      },
-      {
         file: "aethy-character-example-5.webp",
-        label: "Crawl piece — lit render",
+        label: "Crawl study",
         nsfw: false,
       },
+      // The gesture / lines / flats / light stages of the crawl study are
+      // shown as a step-through breakdown on the Process page instead
+      // (see content/process.ts). To also list them here as plain images,
+      // add entries for aethy-character-example-1 … -4.webp.
     ],
   },
 
