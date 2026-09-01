@@ -112,24 +112,19 @@ export const site: SiteConfig = {
   // Example once you've placed one: "art/featured/ascension.webp"
   ogImage: "",
 
-  // Your links. Replace the [EDIT-ME] URLs with your real profiles;
-  // delete any row you don't use. Copy a { ... }, block to add more.
+  // Your links, in display order. Copy a { ... }, block to add more.
   socials: [
     {
       label: "Twitter/X",
-      url: "https://x.com/EDIT-ME", // [EDIT ME]
+      url: "https://x.com/AethyGoob",
     },
     {
-      label: "Bluesky",
-      url: "https://bsky.app/profile/EDIT-ME", // [EDIT ME]
+      label: "TikTok",
+      url: "https://www.tiktok.com/@aethygoob",
     },
     {
-      label: "FurAffinity",
-      url: "https://www.furaffinity.net/user/EDIT-ME", // [EDIT ME]
-    },
-    {
-      label: "Telegram",
-      url: "https://t.me/EDIT-ME", // [EDIT ME]
+      label: "YouTube",
+      url: "https://www.youtube.com/channel/UC3rbBH5DbFhpSPXSI9cqwzA",
     },
     {
       label: "Email",
