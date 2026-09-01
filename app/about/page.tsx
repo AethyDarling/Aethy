@@ -92,6 +92,13 @@ export default function AboutPage() {
 
         <Reveal delay={0.1}>
           <div className="lg:sticky lg:top-28 border-t border-line lg:border lg:border-line lg:p-8 pt-8">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/art/characters/aethy/aethy-character-example-7.webp"
+              alt="Aethy — colored bust self-portrait"
+              loading="lazy"
+              className="w-full aspect-square object-cover border border-line mb-8"
+            />
             <p className="label-caps text-muted mb-6">03 — Contact</p>
             <ul className="space-y-3 mb-10">
               {site.socials.map((s) => (

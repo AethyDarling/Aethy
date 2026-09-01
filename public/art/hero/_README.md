@@ -2,7 +2,13 @@
 
 This folder holds the artwork for the big animated drawing at the top of the homepage — your anatomy/figure study that "draws itself" as the page loads.
 
-You can supply it in **one of two ways** (or both — SVG is preferred, PNGs are the fallback):
+You can supply it in **one of three ways** (SVG is preferred, then stage PNGs; a plain finished image is the simplest fallback):
+
+## Option C: One finished image (simplest)
+
+**Filename:** `hero.webp` (or `hero.png` / `hero.jpg`)
+
+Just a finished piece. It won't animate stroke-by-stroke — instead it does a slow, quiet reveal. A piece on a dark background blends into the site's near-black ground and reads like a full-bleed header. Used only when neither `hero.svg` nor the stage PNGs exist.
 
 ## Option A: One SVG file (preferred)
 

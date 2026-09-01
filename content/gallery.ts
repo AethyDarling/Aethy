@@ -70,4 +70,105 @@ export const gallery: GalleryPiece[] = [
   // },
 
   // 👉 Paste your pieces here.
+  // NOTE: dates below are placeholders in display order — edit them to the
+  // real finish dates whenever; the gallery sorts newest-first by this field.
+  {
+    file: "crowned-figure-flats.webp",
+    title: "Crowned figure — flats",
+    description:
+      "Flat colour pass on an ornamented figure — crown, horns, and blade motif blocked in over the construction lines.",
+    date: "2026-08",
+    tags: ["character design", "wip"],
+    nsfw: false,
+  },
+  {
+    file: "crowned-figure-construction.webp",
+    title: "Crowned figure — construction",
+    description:
+      "The same figure one stage earlier: symmetrical construction line work, white on black.",
+    date: "2026-07",
+    tags: ["character design", "wip"],
+    nsfw: false,
+  },
+  {
+    file: "crawl-study.webp",
+    title: "Crawl study",
+    description:
+      "Weight on all fours in low light — scapula, spine, and loaded shoulders doing the storytelling.",
+    date: "2026-06",
+    tags: ["anatomy", "illustration"],
+    nsfw: false,
+  },
+  {
+    file: "kneeling-reach.webp",
+    title: "Kneeling reach",
+    description:
+      "Silhouette-first pose study — a kneeling figure reaching into the dark.",
+    date: "2026-05",
+    tags: ["anatomy"],
+    nsfw: false,
+  },
+  {
+    file: "porcelain-bust.webp",
+    title: "Porcelain bust",
+    description:
+      "Painted head study — cracked porcelain over dark fur, lit from within.",
+    date: "2026-04",
+    tags: ["illustration"],
+    nsfw: false,
+  },
+  {
+    file: "leaping-figure.webp",
+    title: "Leaping figure",
+    description:
+      "Full-figure gesture pushed to a finished contour — the twist through the torso carries the jump.",
+    date: "2026-03",
+    tags: ["anatomy"],
+    nsfw: false,
+  },
+  {
+    file: "winged-creature-armor.webp",
+    title: "Winged creature — armour pass",
+    description:
+      "Armour design built directly over the anatomy pass, so every plate follows a muscle group underneath.",
+    date: "2026-02",
+    tags: ["character design", "reference sheet"],
+    nsfw: false,
+  },
+  {
+    file: "winged-creature-anatomy.webp",
+    title: "Winged creature — anatomy pass",
+    description:
+      "The base body for the armour design: full-figure front, feathered ears, structure before costume.",
+    date: "2026-01",
+    tags: ["character design", "reference sheet"],
+    nsfw: false,
+  },
+  {
+    file: "amber-torso-study.webp",
+    title: "Amber torso study",
+    description:
+      "Torso and shoulder-girdle study in warm flats, construction sketch still visible behind.",
+    date: "2025-12",
+    tags: ["anatomy", "wip"],
+    nsfw: false,
+  },
+  {
+    file: "drapery-study.webp",
+    title: "Drapery study",
+    description:
+      "Cloth against a standing figure — fold weight and gather, line kept loose below the waist.",
+    date: "2025-11",
+    tags: ["anatomy", "illustration"],
+    nsfw: false,
+  },
+  {
+    file: "sitting-study.webp",
+    title: "Sitting study",
+    description:
+      "Quiet seated pose on toned ground — hands clasped, tail wrapping the composition closed.",
+    date: "2025-10",
+    tags: ["anatomy"],
+    nsfw: false,
+  },
 ];

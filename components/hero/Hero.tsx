@@ -5,10 +5,11 @@ import HeroStage from "./HeroStage";
 
 // Server component (runs at build time in the static export). It looks at
 // what hero artwork actually exists in /public/art/hero/ and hands the
-// client stage exactly one of three situations:
+// client stage exactly one of four situations:
 //   1. hero.svg          → inline SVG markup for the stroke draw-on
 //   2. stage-*.png set   → staged construction reveal (gesture → contour)
-//   3. nothing yet       → a clearly labeled slot, animation system idle
+//   3. hero.webp/png/jpg → a finished piece as the centerpiece (slow reveal)
+//   4. nothing yet       → a clearly labeled slot, animation system idle
 // It never invents artwork — it only reports what the artist has supplied.
 
 const HERO_DIR = path.join(process.cwd(), "public", "art", "hero");
@@ -38,6 +39,15 @@ function findStages(): string[] {
   );
 }
 
+function findHeroImage(): string | null {
+  // A finished piece as the static centerpiece — used when there is no
+  // animatable SVG or stage set. First match wins.
+  for (const f of ["hero.webp", "hero.png", "hero.jpg"]) {
+    if (fs.existsSync(path.join(HERO_DIR, f))) return `/art/hero/${f}`;
+  }
+  return null;
+}
+
 function findParallaxLayers(): { src: string; title: string }[] {
   // Ambient depth layers come from the artist's featured picks (SFW only,
   // and only files that really exist). At most two, so the figure stays
@@ -53,7 +63,15 @@ function findParallaxLayers(): { src: string; title: string }[] {
 export default function Hero() {
   const svgMarkup = readHeroSvg();
   const stages = svgMarkup ? [] : findStages();
+  const heroImage = svgMarkup || stages.length > 0 ? null : findHeroImage();
   const layers = findParallaxLayers();
 
-  return <HeroStage svgMarkup={svgMarkup} stages={stages} layers={layers} />;
+  return (
+    <HeroStage
+      svgMarkup={svgMarkup}
+      stages={stages}
+      heroImage={heroImage}
+      layers={layers}
+    />
+  );
 }

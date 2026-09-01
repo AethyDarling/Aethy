@@ -30,14 +30,19 @@ type Layer = { src: string; title: string };
 export default function HeroStage({
   svgMarkup,
   stages,
+  heroImage,
   layers,
 }: {
   svgMarkup: string | null;
   stages: string[];
+  /** A finished piece used as a static centerpiece (slow reveal, no draw-on). */
+  heroImage?: string | null;
   layers: Layer[];
 }) {
   const reduced = useReducedMotion() ?? false;
   const cfg = theme.hero;
+  // Only the animatable forms use the draw-on timing budget; a static
+  // centerpiece reveals quickly alongside the text.
   const hasArt = Boolean(svgMarkup) || stages.length > 0;
 
   // Entrance phases: draw → text → ambient.
@@ -196,6 +201,16 @@ export default function HeroStage({
             <DrawOnSvg markup={svgMarkup} onDone={() => setDrawn(true)} reduced={reduced} />
           ) : stages.length > 0 ? (
             <StagedReveal stages={stages} onDone={() => setDrawn(true)} reduced={reduced} />
+          ) : heroImage ? (
+            <motion.img
+              src={heroImage}
+              alt="Figure study by Aethy"
+              draggable={false}
+              className="w-full h-full object-contain select-none"
+              initial={reduced ? false : { opacity: 0, scale: 1.03 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+            />
           ) : (
             <div className="art-slot w-full h-full">
               <p>
