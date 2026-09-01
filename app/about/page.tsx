@@ -51,6 +51,24 @@ export default function AboutPage() {
             ))}
           </div>
 
+          {site.credits.length > 0 && (
+            <div className="mt-20">
+              <p className="label-caps text-muted pb-5 border-b border-line max-w-2xl">
+                Selected credits
+              </p>
+              <ul className="max-w-2xl">
+                {site.credits.map((credit) => (
+                  <li
+                    key={credit}
+                    className="py-4 border-b border-line text-sm text-bone"
+                  >
+                    {credit}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <div className="mt-20">
             <p className="label-caps text-muted mb-2">02 — Services</p>
             <div className="border-t border-line max-w-2xl">

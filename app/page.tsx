@@ -2,104 +2,89 @@ import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
 import { site } from "@/content/site";
+import { gallery } from "@/content/gallery";
 import { commissions } from "@/content/commissions";
 import Hero from "@/components/hero/Hero";
-import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 
-export default function HomePage() {
-  // Featured pieces: SFW only, and only files that actually exist —
-  // the homepage never renders adult work and never invents imagery.
-  const dir = path.join(process.cwd(), "public", "art", "featured");
-  const featured = site.featured
-    .filter((f) => !f.nsfw)
-    .filter((f) => fs.existsSync(path.join(dir, f.file)));
-  const open = commissions.commissionsOpen;
+// The homepage follows the shape of senior concept artists' portfolio
+// sites: a compact identity band, then the work itself — immediately and
+// image-first — with a credits strip for credibility and a single quiet
+// contact row. Everything is SFW-only here and only files that actually
+// exist render; nothing is invented.
 
-  const index = [
-    {
-      href: "/gallery/",
-      n: "01",
-      title: "Work",
-      text: "Finished pieces, studies, and reference sheets.",
-    },
-    {
-      href: "/process/",
-      n: "02",
-      title: "Process",
-      text: "Stage-by-stage breakdowns — construction first, then line, colour, and light.",
-    },
-    {
-      href: "/characters/",
-      n: "03",
-      title: "Characters",
-      text: "Reference sheets, anatomy passes, and the lore behind them.",
-    },
-    {
-      href: "/commissions/",
-      n: "04",
-      title: "Commissions",
-      text: open
-        ? "Currently open — tiers, terms, and how to book."
-        : "Currently closed — see what I offer and get in touch.",
-      status: open,
-    },
-    {
-      href: "/about/",
-      n: "05",
-      title: "About",
-      text: "Background, specialties, and where to find me.",
-    },
-  ];
+type HomePiece = { src: string; title: string };
+
+function collectWork(): HomePiece[] {
+  const featuredDir = path.join(process.cwd(), "public", "art", "featured");
+  const curated: HomePiece[] = site.featured
+    .filter((f) => !f.nsfw)
+    .filter((f) => fs.existsSync(path.join(featuredDir, f.file)))
+    .map((f) => ({ src: `/art/featured/${f.file}`, title: f.title }));
+
+  // When the curated strip is thin, backfill with the newest SFW gallery
+  // pieces so the homepage always leads with as much work as exists.
+  if (curated.length >= 6) return curated.slice(0, 9);
+  const galleryDir = path.join(process.cwd(), "public", "art", "gallery");
+  const fallback: HomePiece[] = gallery
+    .filter((p) => !p.nsfw)
+    .filter((p) => fs.existsSync(path.join(galleryDir, p.file)))
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .map((p) => ({ src: `/art/gallery/${p.file}`, title: p.title }))
+    .filter((p) => !curated.some((c) => c.title === p.title));
+  return [...curated, ...fallback].slice(0, 9);
+}
+
+export default function HomePage() {
+  const work = collectWork();
+  const open = commissions.commissionsOpen;
 
   return (
     <>
       <Hero />
 
-      {/* Selected work */}
-      <section className="container-page pt-24 sm:pt-32">
+      {/* The work — straight in, image-first. */}
+      <section className="container-page pt-16 sm:pt-20" aria-label="Selected work">
         <Reveal>
-          <SectionHeading label="01 — Selected work" title="Featured">
+          <div className="flex items-baseline justify-between gap-6 pb-5 border-b border-line mb-8 sm:mb-10">
+            <p className="label-caps text-muted">Selected work</p>
             <Link
               href="/gallery/"
-              className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone shrink-0 mb-2"
+              className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone shrink-0"
             >
               All work →
             </Link>
-          </SectionHeading>
+          </div>
         </Reveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {featured.length > 0
-            ? featured.slice(0, 6).map((f, i) => (
-                <Reveal key={f.file} delay={i * 0.08}>
+          {work.length > 0
+            ? work.map((piece, i) => (
+                <Reveal key={piece.src} delay={(i % 3) * 0.07}>
                   <Link href="/gallery/" className="group block">
-                    <span className="trace block overflow-hidden border border-line">
+                    <span className="trace block border border-line">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={`/art/featured/${f.file}`}
-                        alt={f.title}
-                        loading="lazy"
+                        src={piece.src}
+                        alt={piece.title}
+                        loading={i < 3 ? "eager" : "lazy"}
                         className="trace-img w-full aspect-[4/5] object-cover"
                       />
                     </span>
-                    <span className="flex items-baseline justify-between gap-4 pt-3">
-                      <span className="text-sm text-bone">{f.title}</span>
-                      <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted group-hover:text-bone transition-colors">
-                        View
-                      </span>
+                    <span className="block pt-3 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted group-hover:text-bone transition-colors">
+                      {piece.title}
                     </span>
                   </Link>
                 </Reveal>
               ))
             : [1, 2, 3].map((i) => (
-                <Reveal key={i} delay={i * 0.08}>
+                <Reveal key={i} delay={i * 0.07}>
                   <div className="art-slot aspect-[4/5]">
                     <p>
-                      featured slot {i}
+                      work slot {i}
                       <br />
                       <span className="normal-case tracking-normal">
-                        drop an image in /public/art/featured/ and list it in
-                        content/site.ts
+                        drop images in /public/art/featured/ (or the gallery)
+                        and list them in content/site.ts / content/gallery.ts
                       </span>
                     </p>
                   </div>
@@ -108,65 +93,47 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Site index — large list rows, hairline-divided. */}
-      <section className="container-page pt-24 sm:pt-32" aria-label="Site index">
-        <Reveal>
-          <p className="label-caps text-muted mb-2">02 — Index</p>
-        </Reveal>
-        <div className="border-t border-line">
-          {index.map((item, i) => (
-            <Reveal key={item.href} delay={i * 0.05}>
-              <Link
-                href={item.href}
-                className="index-row group grid sm:grid-cols-[4rem_1fr_auto] items-baseline gap-x-6 gap-y-1 py-7 sm:py-9 border-b border-line"
-              >
-                <span className="font-mono text-[0.65rem] text-muted pt-1">
-                  {item.n}
-                </span>
-                <span>
-                  <span className="font-display text-3xl sm:text-4xl lg:text-5xl text-bone leading-none inline-flex items-center gap-4">
-                    {item.title}
-                    {"status" in item && (
-                      <span
-                        aria-hidden
-                        className={`inline-block w-2 h-2 rounded-full ${
-                          item.status ? "bg-mint" : "bg-rust"
-                        }`}
-                      />
-                    )}
-                  </span>
-                  <span className="block text-muted text-sm leading-relaxed mt-2 max-w-lg">
-                    {item.text}
-                  </span>
-                </span>
-                <span
-                  aria-hidden
-                  className="index-arrow hidden sm:block font-display text-2xl text-bone self-center"
-                >
-                  →
-                </span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Contact band */}
-      <section className="container-page pt-24 sm:pt-32">
-        <Reveal>
-          <div className="text-center py-16 sm:py-24 border border-line">
-            <p className="label-caps text-muted mb-6">
-              {open ? "Booking now" : "Inquiries"}
+      {/* Selected credits — the credibility strip. Hidden until written. */}
+      {site.credits.length > 0 && (
+        <section className="container-page pt-20 sm:pt-28" aria-label="Selected credits">
+          <Reveal>
+            <p className="label-caps text-muted pb-5 border-b border-line">
+              Selected credits
             </p>
-            <h2 className="font-display text-4xl sm:text-6xl text-bone leading-[0.95] mb-8">
-              Let&rsquo;s build something
-            </h2>
-            <a
-              href={`mailto:${site.email}?subject=${encodeURIComponent("Commission inquiry")}`}
-              className="draw-link font-mono text-sm sm:text-base tracking-[0.15em] text-bone"
+          </Reveal>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
+            {site.credits.map((credit, i) => (
+              <Reveal key={credit} delay={(i % 3) * 0.05}>
+                <li className="py-4 border-b border-line text-sm text-bone">
+                  {credit}
+                </li>
+              </Reveal>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* Contact — one quiet row, the email is the whole point. */}
+      <section className="container-page pt-20 sm:pt-28">
+        <Reveal>
+          <div className="border-t border-line pt-10 sm:pt-14 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-6">
+            <div>
+              <p className="label-caps text-muted mb-4">
+                {open ? "Commissions open" : "Commissions & inquiries"}
+              </p>
+              <a
+                href={`mailto:${site.email}?subject=${encodeURIComponent("Commission inquiry")}`}
+                className="draw-link font-display text-2xl sm:text-4xl text-bone"
+              >
+                {site.email}
+              </a>
+            </div>
+            <Link
+              href="/commissions/"
+              className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone shrink-0"
             >
-              {site.email}
-            </a>
+              {open ? "Tiers & terms →" : "What I offer →"}
+            </Link>
           </div>
         </Reveal>
       </section>

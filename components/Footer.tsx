@@ -10,8 +10,8 @@ export default function Footer() {
             <p className="font-display text-2xl tracking-[0.2em] text-bone">
               AETHY
             </p>
-            <p className="text-muted text-sm mt-3 max-w-sm leading-relaxed">
-              {site.tagline}
+            <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted mt-3">
+              {site.roles.join("  |  ")}
             </p>
             <a
               href={`mailto:${site.email}`}

@@ -10,6 +10,7 @@ const nav = [
   { href: "/gallery/", label: "Work" },
   { href: "/process/", label: "Process" },
   { href: "/characters/", label: "Characters" },
+  { href: "/codex/", label: "Codex" },
   { href: "/commissions/", label: "Commissions" },
   { href: "/about/", label: "About" },
 ];
