@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function CharactersPage() {
   return (
     <div className="container-page pt-16 sm:pt-24">
-      <SectionHeading label="01 — The cast" title="Characters" />
+      <SectionHeading label="01 — The bestiary" title="Characters" />
       <CharacterIndex characters={characters} />
     </div>
   );

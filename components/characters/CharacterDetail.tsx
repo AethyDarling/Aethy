@@ -54,6 +54,9 @@ export default function CharacterDetail({ character }: { character: Character })
               </span>
             )}
             <p className="px-4 py-2.5 border-t border-line text-sm text-muted">
+              <span className="font-mono text-[0.65rem] uppercase tracking-[0.15em] mr-3">
+                Plate {String(Math.min(active, Math.max(images.length - 1, 0)) + 1).padStart(2, "0")}
+              </span>
               {current.label}
             </p>
           </div>
@@ -97,7 +100,7 @@ export default function CharacterDetail({ character }: { character: Character })
       {/* Name, species, lore */}
       <Reveal>
         <div className="lg:sticky lg:top-28">
-          <p className="label-caps text-muted mb-4">Character file</p>
+          <p className="label-caps text-muted mb-4">Field entry</p>
           <h1 className="font-display text-5xl sm:text-6xl text-bone leading-[0.95]">
             {c.name}
           </h1>
