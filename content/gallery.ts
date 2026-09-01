@@ -21,6 +21,11 @@
 //   "illustration"     — finished illustrative pieces
 //   "reference sheet"  — character reference sheets
 //   "wip"              — works in progress / process shots
+//   "sketchbook"       — rough studies and sketches (a home for loose work)
+//
+// SERIES group related pieces into a body of work with its own page
+// (e.g. construction → flats of one design). Define the series in the
+// `series` list below, then put its id in each piece's `series` field.
 // =============================================================================
 
 /** One piece of art in the gallery. (This block defines the shape — don't edit it.) */
@@ -37,15 +42,49 @@ export type GalleryPiece = {
   tags: string[];
   /** true if this is an adult piece (hidden until the visitor confirms 18+), false if safe for everyone. EVERY adult piece MUST say true here. */
   nsfw: boolean;
+  /**
+   * The credit line shown under the title — who it was for, e.g.
+   * "Client name — art director Jane Doe", or "Personal study" for your
+   * own work. Leave out for no credit line.
+   */
+  credit?: string;
+  /** The id of the series this piece belongs to (see the `series` list). Leave out if it stands alone. */
+  series?: string;
+};
+
+/** A body of work with its own page. (Shape definition — don't edit.) */
+export type GallerySeries = {
+  /** Short id used in the web address and in pieces' `series` fields — lowercase, hyphens, no spaces. */
+  id: string;
+  /** The series title, e.g. "Crowned figure". */
+  title: string;
+  /** One paragraph on the intent of the series, shown at the top of its page. */
+  intro: string;
 };
 
 /**
+ * Series — bodies of work. Pieces are ordered oldest-first on a series
+ * page, so the sequence reads as the design developed.
+ */
+export const series: GallerySeries[] = [
+  {
+    id: "crowned-figure",
+    title: "Crowned figure",
+    intro:
+      "An ornamented figure taken from symmetrical construction lines through to a flat colour pass — the crown, horns, and blade motif blocked in over the structure before any rendering.",
+  },
+  {
+    id: "winged-creature",
+    title: "Winged creature",
+    intro:
+      "A creature design built in two passes: the anatomy first — full-figure front with feathered ears — then armour laid directly over it, so every plate follows the muscle group underneath.",
+  },
+];
+
+/**
  * The gallery itself. Add one { ... } block per piece, in any order
- * (the site sorts by date, newest first).
- *
- * The gallery is EMPTY right now — the example below is commented out
- * because its file doesn't exist yet. When you add your first real piece,
- * copy the example, remove the // marks, and edit it.
+ * (the site sorts by date, newest first). The commented example shows
+ * every field; the real entries follow it.
  */
 export const gallery: GalleryPiece[] = [
   // {
@@ -80,6 +119,8 @@ export const gallery: GalleryPiece[] = [
     date: "2026-08",
     tags: ["character design", "wip"],
     nsfw: false,
+    credit: "Personal design",
+    series: "crowned-figure",
   },
   {
     file: "crowned-figure-construction.webp",
@@ -89,6 +130,8 @@ export const gallery: GalleryPiece[] = [
     date: "2026-07",
     tags: ["character design", "wip"],
     nsfw: false,
+    credit: "Personal design",
+    series: "crowned-figure",
   },
   {
     file: "crawl-study.webp",
@@ -98,6 +141,7 @@ export const gallery: GalleryPiece[] = [
     date: "2026-06",
     tags: ["anatomy", "illustration"],
     nsfw: false,
+    credit: "Personal study",
   },
   {
     file: "kneeling-reach.webp",
@@ -107,6 +151,7 @@ export const gallery: GalleryPiece[] = [
     date: "2026-05",
     tags: ["anatomy"],
     nsfw: false,
+    credit: "Personal study",
   },
   {
     file: "porcelain-bust.webp",
@@ -116,6 +161,7 @@ export const gallery: GalleryPiece[] = [
     date: "2026-04",
     tags: ["illustration"],
     nsfw: false,
+    credit: "Personal study",
   },
   {
     file: "leaping-figure.webp",
@@ -125,6 +171,7 @@ export const gallery: GalleryPiece[] = [
     date: "2026-03",
     tags: ["anatomy"],
     nsfw: false,
+    credit: "Personal study",
   },
   {
     file: "winged-creature-armor.webp",
@@ -134,6 +181,8 @@ export const gallery: GalleryPiece[] = [
     date: "2026-02",
     tags: ["character design", "reference sheet"],
     nsfw: false,
+    credit: "Personal design",
+    series: "winged-creature",
   },
   {
     file: "winged-creature-anatomy.webp",
@@ -143,6 +192,8 @@ export const gallery: GalleryPiece[] = [
     date: "2026-01",
     tags: ["character design", "reference sheet"],
     nsfw: false,
+    credit: "Personal design",
+    series: "winged-creature",
   },
   {
     file: "amber-torso-study.webp",
@@ -152,6 +203,7 @@ export const gallery: GalleryPiece[] = [
     date: "2025-12",
     tags: ["anatomy", "wip"],
     nsfw: false,
+    credit: "Personal study",
   },
   {
     file: "drapery-study.webp",
@@ -161,6 +213,7 @@ export const gallery: GalleryPiece[] = [
     date: "2025-11",
     tags: ["anatomy", "illustration"],
     nsfw: false,
+    credit: "Personal study",
   },
   {
     file: "sitting-study.webp",
@@ -170,5 +223,35 @@ export const gallery: GalleryPiece[] = [
     date: "2025-10",
     tags: ["anatomy"],
     nsfw: false,
+    credit: "Personal study",
+  },
+
+  // Sketchbook — loose studies, kept deliberately rough.
+  {
+    file: "sketch-head-study.webp",
+    title: "Head study",
+    description: "Quick construction of a long-muzzled head — planes first, fur direction second.",
+    date: "2025-09",
+    tags: ["sketchbook", "anatomy"],
+    nsfw: false,
+    credit: "Sketchbook",
+  },
+  {
+    file: "sketch-profile-headphones.webp",
+    title: "Profile with headphones",
+    description: "A loose profile sketch — skull shape, ear placement, and how the band sits against both.",
+    date: "2025-08",
+    tags: ["sketchbook"],
+    nsfw: false,
+    credit: "Sketchbook",
+  },
+  {
+    file: "sketch-goblin-bust.webp",
+    title: "Goblin bust",
+    description: "Rough bust with the arm thrown over the shoulder — mass and gesture before any cleanup.",
+    date: "2025-07",
+    tags: ["sketchbook", "character design"],
+    nsfw: false,
+    credit: "Sketchbook",
   },
 ];

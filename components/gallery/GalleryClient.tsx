@@ -1,29 +1,41 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import type { GalleryPiece } from "@/content/gallery";
+import type { GalleryPiece, GallerySeries } from "@/content/gallery";
 import { useNsfw } from "@/components/NsfwContext";
 import Lightbox from "./Lightbox";
 
-// The gallery: tag filtering with animated transitions, masonry columns,
-// and a lightbox. NSFW pieces are filtered out of the data BEFORE render
-// unless the visitor has confirmed 18+ — their thumbnails never mount,
-// so nothing adult is fetched or preloaded ahead of consent.
+// The gallery: tag and series filtering with animated transitions, masonry
+// columns, and a lightbox. NSFW pieces are filtered out of the data BEFORE
+// render unless the visitor has confirmed 18+ — their thumbnails never
+// mount, so nothing adult is fetched or preloaded ahead of consent.
 
-export default function GalleryClient({ pieces }: { pieces: GalleryPiece[] }) {
+type Filter = { kind: "all" } | { kind: "tag"; value: string } | { kind: "series"; value: string };
+
+export default function GalleryClient({
+  pieces,
+  series,
+}: {
+  pieces: GalleryPiece[];
+  series: GallerySeries[];
+}) {
   const { showNsfw } = useNsfw();
-  const [activeTag, setActiveTag] = useState<string>("all");
+  const [filter, setFilter] = useState<Filter>({ kind: "all" });
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const visible = useMemo(() => {
     const safe = pieces
       .filter((p) => showNsfw || !p.nsfw)
       .sort((a, b) => (a.date < b.date ? 1 : -1));
-    return activeTag === "all"
-      ? safe
-      : safe.filter((p) => p.tags.includes(activeTag));
-  }, [pieces, showNsfw, activeTag]);
+    if (filter.kind === "tag") return safe.filter((p) => p.tags.includes(filter.value));
+    if (filter.kind === "series") {
+      // A series reads oldest-first, the way the design developed.
+      return safe.filter((p) => p.series === filter.value).reverse();
+    }
+    return safe;
+  }, [pieces, showNsfw, filter]);
 
   const tags = useMemo(() => {
     const t = new Set<string>();
@@ -31,13 +43,26 @@ export default function GalleryClient({ pieces }: { pieces: GalleryPiece[] }) {
       if (!showNsfw && p.nsfw) continue;
       p.tags.forEach((x) => t.add(x));
     }
-    // Anatomy leads the row — it's the signature category.
+    // Anatomy leads the row — it's the signature category; sketchbook closes it.
     return Array.from(t).sort((a, b) => {
       if (a === "anatomy") return -1;
       if (b === "anatomy") return 1;
+      if (a === "sketchbook") return 1;
+      if (b === "sketchbook") return -1;
       return a.localeCompare(b);
     });
   }, [pieces, showNsfw]);
+
+  // Only series that have at least one viewable piece appear as tabs.
+  const visibleSeries = useMemo(
+    () =>
+      series.filter((s) =>
+        pieces.some((p) => p.series === s.id && (showNsfw || !p.nsfw))
+      ),
+    [series, pieces, showNsfw]
+  );
+  const activeSeries =
+    filter.kind === "series" ? visibleSeries.find((s) => s.id === filter.value) : undefined;
 
   if (pieces.length === 0) {
     return (
@@ -58,29 +83,71 @@ export default function GalleryClient({ pieces }: { pieces: GalleryPiece[] }) {
     );
   }
 
+  const tabClass = (active: boolean) =>
+    `font-mono text-[0.65rem] uppercase tracking-[0.2em] pb-1 border-b transition-colors ${
+      active ? "border-bone text-bone" : "border-transparent text-muted hover:text-bone"
+    }`;
+
   return (
     <>
-      {/* Filter row — plain tracked-caps text, underline marks the active one. */}
-      <div
-        className="flex flex-wrap gap-x-7 gap-y-3 mb-12"
-        role="toolbar"
-        aria-label="Filter by category"
-      >
-        {["all", ...tags].map((tag) => (
+      {/* Filter rows — plain tracked-caps text, underline marks the active one. */}
+      <div className="mb-12 space-y-4">
+        <div className="flex flex-wrap gap-x-7 gap-y-3" role="toolbar" aria-label="Filter by category">
           <button
-            key={tag}
-            onClick={() => setActiveTag(tag)}
-            aria-pressed={activeTag === tag}
-            className={`font-mono text-[0.65rem] uppercase tracking-[0.2em] pb-1 border-b transition-colors ${
-              activeTag === tag
-                ? "border-bone text-bone"
-                : "border-transparent text-muted hover:text-bone"
-            }`}
+            onClick={() => setFilter({ kind: "all" })}
+            aria-pressed={filter.kind === "all"}
+            className={tabClass(filter.kind === "all")}
           >
-            {tag}
+            all
           </button>
-        ))}
+          {tags.map((tag) => {
+            const active = filter.kind === "tag" && filter.value === tag;
+            return (
+              <button
+                key={tag}
+                onClick={() => setFilter({ kind: "tag", value: tag })}
+                aria-pressed={active}
+                className={tabClass(active)}
+              >
+                {tag}
+              </button>
+            );
+          })}
+        </div>
+        {visibleSeries.length > 0 && (
+          <div className="flex flex-wrap items-baseline gap-x-7 gap-y-3" role="toolbar" aria-label="Filter by series">
+            <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted/70">
+              Series
+            </span>
+            {visibleSeries.map((s) => {
+              const active = filter.kind === "series" && filter.value === s.id;
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => setFilter({ kind: "series", value: s.id })}
+                  aria-pressed={active}
+                  className={tabClass(active)}
+                >
+                  {s.title}
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
+
+      {/* A selected series shows its intent and a door to its own page. */}
+      {activeSeries && (
+        <div className="mb-10 max-w-2xl">
+          <p className="text-muted text-sm leading-relaxed">{activeSeries.intro}</p>
+          <Link
+            href={`/series/${activeSeries.id}/`}
+            className="draw-link inline-block font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone mt-4"
+          >
+            Open the series →
+          </Link>
+        </div>
+      )}
 
       {/* Masonry columns */}
       <motion.div layout className="columns-1 sm:columns-2 lg:columns-3 gap-6">
@@ -115,11 +182,14 @@ export default function GalleryClient({ pieces }: { pieces: GalleryPiece[] }) {
                     </span>
                   )}
                 </span>
-                <figcaption className="flex items-baseline justify-between gap-3 pt-3">
-                  <span className="text-sm text-bone">{p.title}</span>
-                  <span className="font-mono text-[0.6rem] text-muted shrink-0">
-                    {p.date}
-                  </span>
+                {/* Caption: title, then the credit line — never a date. */}
+                <figcaption className="pt-3">
+                  <span className="block text-sm text-bone">{p.title}</span>
+                  {p.credit && (
+                    <span className="block font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted mt-1">
+                      {p.credit}
+                    </span>
+                  )}
                 </figcaption>
               </button>
             </motion.figure>

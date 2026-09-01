@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { gallery } from "@/content/gallery";
+import { gallery, series } from "@/content/gallery";
 import SectionHeading from "@/components/SectionHeading";
 import GalleryClient from "@/components/gallery/GalleryClient";
 
@@ -13,7 +13,7 @@ export default function GalleryPage() {
   return (
     <div className="container-page pt-16 sm:pt-24">
       <SectionHeading label="01 — Complete works" title="Work" />
-      <GalleryClient pieces={gallery} />
+      <GalleryClient pieces={gallery} series={series} />
     </div>
   );
 }

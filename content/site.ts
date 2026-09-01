@@ -86,10 +86,14 @@ export const site: SiteConfig = {
   roles: ["Concept Work", "Anatomy", "Realism"],
 
   // Selected clients / projects / credits. [] = the strip stays hidden.
-  // Example entries once you have some:
+  // The two entries below are your public bodies of work — replace or
+  // extend them with client credits as they come, e.g.
   //   "Client or studio name — what you did",
   //   "Project title — character design (2025)",
-  credits: [],
+  credits: [
+    "The Aether Codex — author and designer of a physics-based hard-magic system (aethercodex.org)",
+    "Aethy — original mascot design and ongoing anatomy development",
+  ],
 
   // Your Aether Codex site — the /codex/ page links out to it.
   codex: {
