@@ -45,7 +45,7 @@ export default function CharacterDetail({ character }: { character: Character })
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`/art/characters/${c.folder}/${current.file}`}
-              alt={`${c.name} — ${current.label}`}
+              alt={current.label ? `${c.name} — ${current.label}` : c.name}
               className="w-full object-contain max-h-[75vh]"
             />
             {current.nsfw && (
@@ -53,11 +53,9 @@ export default function CharacterDetail({ character }: { character: Character })
                 18+
               </span>
             )}
-            <p className="px-4 py-2.5 border-t border-line text-sm text-muted">
-              <span className="font-mono text-[0.65rem] uppercase tracking-[0.15em] mr-3">
-                Plate {String(Math.min(active, Math.max(images.length - 1, 0)) + 1).padStart(2, "0")}
-              </span>
-              {current.label}
+            <p className="px-4 py-2.5 border-t border-line font-mono text-[0.65rem] uppercase tracking-[0.15em] text-muted">
+              Plate {String(Math.min(active, Math.max(images.length - 1, 0)) + 1).padStart(2, "0")}
+              <span className="ml-2 text-muted/60">/ {String(images.length).padStart(2, "0")}</span>
             </p>
           </div>
         ) : (
@@ -72,7 +70,7 @@ export default function CharacterDetail({ character }: { character: Character })
               <button
                 key={img.file}
                 onClick={() => setActive(i)}
-                aria-label={`View ${img.label}`}
+                aria-label={`View plate ${i + 1}`}
                 aria-current={i === active}
                 className={`relative border transition-colors ${
                   i === active ? "border-bone" : "border-line hover:border-muted"

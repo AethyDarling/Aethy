@@ -46,7 +46,7 @@ export default function CharacterIndex({
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
                     src={`/art/characters/${c.folder}/${thumbEntry.file}`}
-                    alt={`${c.name} — ${thumbEntry.label}`}
+                    alt={thumbEntry.label ? `${c.name} — ${thumbEntry.label}` : c.name}
                     loading="lazy"
                     decoding="async"
                     className="trace-img w-full aspect-[4/5] object-cover"

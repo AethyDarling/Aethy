@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import type { GalleryPiece, GallerySeries } from "@/content/gallery";
+import { seriesLabel, type GalleryPiece, type GallerySeries } from "@/content/gallery";
 import { useNsfw } from "@/components/NsfwContext";
 import Lightbox from "./Lightbox";
 
@@ -128,7 +128,7 @@ export default function GalleryClient({
                   aria-pressed={active}
                   className={tabClass(active)}
                 >
-                  {s.title}
+                  {seriesLabel(s)}
                 </button>
               );
             })}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { gallery, series } from "@/content/gallery";
+import { gallery, series, seriesLabel } from "@/content/gallery";
 import SectionHeading from "@/components/SectionHeading";
 import Reveal from "@/components/Reveal";
 import SeriesPlates from "@/components/gallery/SeriesPlates";
@@ -24,8 +24,8 @@ export async function generateMetadata({
   const s = series.find((x) => x.id === slug);
   if (!s) return {};
   return {
-    title: s.title,
-    description: `${s.title} — a series by Aethy. ${s.intro}`,
+    title: seriesLabel(s),
+    description: `A series by Aethy. ${s.intro}`,
   };
 }
 
@@ -54,7 +54,7 @@ export default async function SeriesPage({
         ← All work
       </Link>
       <div className="mt-10">
-        <SectionHeading label={`Series — ${pieces.length} pieces`} title={s.title} />
+        <SectionHeading label={`${pieces.length} pieces`} title={seriesLabel(s)} />
       </div>
 
       <Reveal>
@@ -75,7 +75,7 @@ export default async function SeriesPage({
             href={`/series/${prev.id}/`}
             className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone"
           >
-            ← {prev.title}
+            ← {seriesLabel(prev)}
           </Link>
         ) : (
           <span />
@@ -85,7 +85,7 @@ export default async function SeriesPage({
             href={`/series/${next.id}/`}
             className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone"
           >
-            {next.title} →
+            {seriesLabel(next)} →
           </Link>
         ) : (
           <span />

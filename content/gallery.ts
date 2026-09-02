@@ -61,11 +61,18 @@ export type GalleryPiece = {
 export type GallerySeries = {
   /** Short id used in the web address and in pieces' `series` fields — lowercase, hyphens, no spaces. */
   id: string;
-  /** The series title, e.g. "Crowned figure". */
-  title: string;
+  /** Optional title. Left out, the series is labelled by its number ("Series 01"). */
+  title?: string;
   /** One paragraph on the intent of the series, shown at the top of its page. */
   intro: string;
 };
+
+/** The label a series is shown under: its title if it has one, else "Series 01", "Series 02", … by position. */
+export function seriesLabel(s: GallerySeries): string {
+  if (s.title) return s.title;
+  const i = series.findIndex((x) => x.id === s.id);
+  return `Series ${String(i + 1).padStart(2, "0")}`;
+}
 
 /**
  * Series — bodies of work. Pieces are ordered oldest-first on a series
@@ -74,13 +81,11 @@ export type GallerySeries = {
 export const series: GallerySeries[] = [
   {
     id: "crowned-figure",
-    title: "Crowned figure",
     intro:
       "An ornamented figure taken from symmetrical construction lines through to a flat colour pass — the crown, horns, and blade motif blocked in over the structure before any rendering.",
   },
   {
     id: "winged-creature",
-    title: "Winged creature",
     intro:
       "A creature design built in two passes: the anatomy first — full-figure front with feathered ears — then armour laid directly over it, so every plate follows the muscle group underneath.",
   },

@@ -72,7 +72,7 @@ function collectSpecimen() {
     return {
       href: `/characters/${c.folder}/`,
       src: `/art/characters/${c.folder}/${img.file}`,
-      alt: `${c.name} — ${img.label}`,
+      alt: img.label ? `${c.name} — ${img.label}` : c.name,
       name: c.name,
       species: c.species && !c.species.startsWith("[EDIT") ? c.species : null,
       lore: c.description.startsWith("[EDIT") ? null : c.description.split("\n\n")[0],
