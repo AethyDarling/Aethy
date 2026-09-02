@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Palette values are injected on <html> by app/layout.tsx from content/theme.ts.
-   Edit colors THERE — these are only fallbacks so the page never renders unstyled. */
+   Edit colors THERE, these are only fallbacks so the page never renders unstyled. */
 :root {
   --c-ink: #0a0a0b;
   --c-surface: #121214;
@@ -14,7 +14,7 @@
   --c-mint: #7fd6ba;
   --c-rust: #b0512e;
 
-  /* Same colors as "R G B" channels — Tailwind opacity modifiers
+  /* Same colors as "R G B" channels; Tailwind opacity modifiers
      (bg-ink/95 …) need this form. layout.tsx overrides both sets. */
   --c-ink-rgb: 10 10 11;
   --c-surface-rgb: 18 18 20;
@@ -64,7 +64,7 @@ body {
   }
 }
 
-/* Display type — the font-family comes from the Tailwind utility; this
+/* Display type; the font-family comes from the Tailwind utility; this
    layers the engraved-plate setting on top: a solid semibold with the
    serif's natural letterfit left alone. */
 .font-display {
@@ -72,12 +72,11 @@ body {
   letter-spacing: 0.005em;
 }
 
-/* Small tracked-caps annotation label. */
-.label-caps {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
+/* Small annotation label: sans, mixed case, a touch of tracking. */
+.overline {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
 }
 
 /* Legacy name kept for convenience: now a clean hairline divider. */
@@ -129,23 +128,6 @@ body {
   transform: scaleX(1);
 }
 
-/* Index rows — the big list navigation on the homepage. The arrow slides
-   in and the row text lifts to full brightness on hover. */
-.index-row {
-  transition: background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.index-row .index-arrow {
-  opacity: 0;
-  transform: translateX(-0.5rem);
-  transition:
-    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.index-row:hover .index-arrow,
-.index-row:focus-visible .index-arrow {
-  opacity: 1;
-  transform: translateX(0);
-}
 
 /* Flat labeled slot for artwork that hasn't been supplied yet. */
 .art-slot {

@@ -22,7 +22,7 @@ import HeroTicks from "./HeroTicks";
 //   Act 2 (ambient): construction-tick canvas drifts behind everything,
 //     art layers respond to the cursor with parallax (or sway gently on
 //     touch devices), the CTA leans toward the pointer.
-// All timing/strength knobs live in content/theme.ts → theme.hero.
+// All timing/strength knobs live in content/theme.ts theme.hero.
 // Reduced motion: everything renders in its final state, no animation.
 
 type Layer = { src: string; title: string };
@@ -45,7 +45,7 @@ export default function HeroStage({
   // centerpiece reveals quickly alongside the text.
   const hasArt = Boolean(svgMarkup) || stages.length > 0;
 
-  // Entrance phases: draw → text → ambient.
+  // Entrance phases: draw text ambient.
   const [drawn, setDrawn] = useState(reduced || !hasArt);
   const [ambient, setAmbient] = useState(reduced);
 
@@ -111,15 +111,12 @@ export default function HeroStage({
   const backX = useTransform(sx, (v) => v * -cfg.parallaxPx * 0.5);
   const backY = useTransform(sy, (v) => v * -cfg.parallaxPx * 0.3);
 
-  const textDelay = (i: number) =>
-    reduced ? 0 : (hasArt ? cfg.drawDurationMs + cfg.textDelayMs : 200) / 1000 +
-      (i * cfg.textStaggerMs) / 1000;
 
   return (
     <section
       ref={sectionRef}
       className="relative overflow-hidden border-b border-line"
-      aria-label="Aethy — concept artist"
+      aria-label="Aethy, concept artist"
     >
       {/* Ambient construction-tick field (Act 2). Flat lines, capped cost. */}
       {ambient && !reduced && cfg.particleCount > 0 && (
@@ -127,50 +124,25 @@ export default function HeroStage({
       )}
 
       <div className="relative container-page min-h-[60vh] lg:min-h-[68vh] grid lg:grid-cols-[5fr_5fr] items-center gap-12 py-16 lg:py-20">
-        {/* Identity block — the way senior artists' sites do it: name, a
-            discipline line, availability, one quiet action. The work itself
-            begins immediately below. */}
+        {/* Identity block: name, disciplines, availability, one action. */}
         <div className="relative z-10 order-2 lg:order-1 text-center lg:text-left">
-          <motion.h1
-            className="font-display text-bone leading-[0.95] text-[clamp(3.5rem,8vw,6.5rem)] tracking-[0.06em]"
-            initial={reduced ? false : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: textDelay(0), ease: [0.22, 1, 0.36, 1] }}
-          >
+          <h1 className="font-display text-bone leading-[0.95] text-[clamp(3.5rem,8vw,6.5rem)] tracking-[0.04em]">
             AETHY
-          </motion.h1>
-          <motion.p
-            className="font-mono text-[0.7rem] sm:text-xs uppercase tracking-[0.25em] text-muted mt-5"
-            initial={reduced ? false : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: textDelay(1), ease: [0.22, 1, 0.36, 1] }}
-          >
-            {site.roles.join("  |  ")}
-          </motion.p>
-          <motion.div
-            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 justify-center lg:justify-start"
-            initial={reduced ? false : { opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: textDelay(2), ease: [0.22, 1, 0.36, 1] }}
-          >
-            <span className="inline-flex items-center gap-2.5 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted">
-              <span
-                aria-hidden
-                className={`inline-block w-1.5 h-1.5 rounded-full ${
-                  commissions.commissionsOpen ? "bg-mint" : "bg-rust"
-                }`}
-              />
-              {commissions.commissionsOpen
-                ? "Available for freelance"
-                : "Books closed — inquiries welcome"}
+          </h1>
+          <p className="text-muted text-sm sm:text-base mt-4">
+            {site.roles.join(" · ")}
+          </p>
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 justify-center lg:justify-start">
+            <span className="text-sm text-muted">
+              {commissions.commissionsOpen ? "Commissions open" : "Commissions closed"}
             </span>
             <MagneticButton href="/commissions/" variant="outline">
               Commissions
             </MagneticButton>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Figure centerpiece — the artist's own study, animated by code. */}
+        {/* Figure centerpiece; the artist's own study, animated by code. */}
         <motion.div
           className="relative z-[5] order-1 lg:order-2 h-[38vh] lg:h-[54vh]"
           style={reduced ? undefined : { x: figX, y: figY }}
@@ -202,14 +174,12 @@ export default function HeroStage({
           ) : stages.length > 0 ? (
             <StagedReveal stages={stages} onDone={() => setDrawn(true)} reduced={reduced} />
           ) : heroImage ? (
-            <motion.img
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
               src={heroImage}
               alt="Figure study by Aethy"
               draggable={false}
               className="w-full h-full object-contain select-none"
-              initial={reduced ? false : { opacity: 0, scale: 1.03 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
             />
           ) : (
             <div className="art-slot w-full h-full">
@@ -218,7 +188,7 @@ export default function HeroStage({
                 <br />
                 <span className="normal-case tracking-normal">
                   drop <code>hero.svg</code> (animatable line art) or the four{" "}
-                  <code>stage-*.png</code> files into <code>/public/art/hero/</code> —
+                  <code>stage-*.png</code> files into <code>/public/art/hero/</code> -
                   see the _README there
                 </span>
               </p>

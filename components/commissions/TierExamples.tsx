@@ -28,7 +28,7 @@ export default function TierExamples({
             className="w-full aspect-square object-cover"
           />
           {e.nsfw && (
-            <span className="absolute top-1 right-1 font-mono text-[0.55rem] uppercase bg-ink text-mint border border-mint px-1">
+            <span className="absolute top-1 right-1 font-sans text-[0.55rem] uppercase bg-ink text-mint border border-mint px-1">
               18+
             </span>
           )}

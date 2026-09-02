@@ -62,7 +62,7 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
   if (series.nsfw && !showNsfw) {
     return (
       <div className="border border-line p-10 text-center">
-        <p className="label-caps text-mint mb-4">18+ series</p>
+        <p className="text-sm text-mint mb-4">18+ series</p>
         <p className="text-muted text-sm">
           Turn on the 18+ toggle in the header to view this breakdown.
         </p>
@@ -76,9 +76,7 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
     <section aria-labelledby={`${series.id}-title`} className="mb-28 sm:mb-36">
       <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
         <div>
-          <p className="label-caps text-muted mb-3">
-            Plate sequence — {stages.length} stages
-          </p>
+          <p className="text-sm text-muted mb-3">{stages.length} stages</p>
           <h2
             id={`${series.id}-title`}
             className="font-display text-3xl sm:text-4xl text-bone"
@@ -88,10 +86,10 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
         </div>
         <button
           onClick={() => (playing ? setPlaying(false) : play())}
-          className="font-mono text-[0.65rem] uppercase tracking-[0.2em] border border-bone text-bone px-5 py-2.5 hover:bg-bone hover:text-ink transition-colors"
+          className="text-sm border border-bone text-bone px-5 py-2.5 hover:bg-bone hover:text-ink transition-colors"
           aria-label={playing ? "Pause the build-up" : "Play the build-up"}
         >
-          {playing ? "❙❙ pause" : i >= last ? "↻ replay" : "▶ play build"}
+          {playing ? "Pause" : i >= last ? "Replay" : "Play"}
         </button>
       </div>
 
@@ -105,17 +103,17 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
         ref={frameRef}
         tabIndex={0}
         role="group"
-        aria-label={`${series.title} — stage ${i + 1} of ${stages.length}, ${current.name}`}
+        aria-label={`${series.title}, stage ${i + 1} of ${stages.length}, ${current.name}`}
         onKeyDown={onKeyDown}
         className="relative border border-line bg-surface focus:outline-none focus-visible:border-mint"
       >
-        {/* Stacked stages — all mounted so switching is instant. */}
+        {/* Stacked stages; all mounted so switching is instant. */}
         <div className="relative w-full aspect-[4/3] sm:aspect-[16/10]">
           {stages.map((s, idx) => (
             <motion.img
               key={s.src}
               src={`/${s.src}`}
-              alt={`${series.title} — ${s.name} stage`}
+              alt={`${series.title}, ${s.name} stage`}
               draggable={false}
               className="absolute inset-0 w-full h-full object-contain select-none"
               initial={false}
@@ -129,7 +127,7 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
           ))}
 
           {/* Stage counter, top-left, like a plate number. */}
-          <p className="absolute top-3 left-3 z-10 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted bg-ink/80 px-2 py-1">
+          <p className="absolute top-3 left-3 z-10 font-sans text-[0.6rem] uppercase tracking-[0.08em] text-muted bg-ink/80 px-2 py-1">
             {String(i + 1).padStart(2, "0")} / {String(stages.length).padStart(2, "0")}
           </p>
         </div>
@@ -155,7 +153,7 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
         </div>
       </div>
 
-      {/* Stage rail — click any stage to jump straight to it. */}
+      {/* Stage rail; click any stage to jump straight to it. */}
       <ol className="grid grid-cols-3 sm:grid-cols-5 gap-2 mt-3">
         {stages.map((s, idx) => (
           <li key={s.src}>
@@ -182,7 +180,7 @@ export default function ProcessViewer({ series }: { series: ProcessSeries }) {
                 }`}
               />
               <span
-                className={`block px-2 py-1.5 font-mono text-[0.6rem] uppercase tracking-[0.1em] ${
+                className={`block px-2 py-1.5 font-sans text-[0.6rem] uppercase tracking-[0.05em] ${
                   idx === i ? "text-bone" : "text-muted"
                 }`}
               >

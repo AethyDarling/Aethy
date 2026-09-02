@@ -6,7 +6,7 @@ import { useNsfw } from "@/components/NsfwContext";
 import Reveal from "@/components/Reveal";
 
 // One character's page. If the character itself is 18+ and the gate is off,
-// nothing but a notice renders — no images mount, nothing preloads.
+// nothing but a notice renders; no images mount, nothing preloads.
 // Individual 18+ images inside a SFW character behave the same way.
 export default function CharacterDetail({ character }: { character: Character }) {
   const { showNsfw, setShowNsfw } = useNsfw();
@@ -16,13 +16,13 @@ export default function CharacterDetail({ character }: { character: Character })
   if (c.nsfw && !showNsfw) {
     return (
       <div className="border border-line p-10 mt-10 text-center max-w-xl mx-auto">
-        <p className="label-caps text-mint mb-4">18+ character</p>
+        <p className="text-sm text-mint mb-4">18+ character</p>
         <p className="text-muted text-sm leading-relaxed mb-6">
           This character's page is adult-only. Turn on the 18+ toggle to view it.
         </p>
         <button
           onClick={() => setShowNsfw(true)}
-          className="border border-mint text-mint font-mono text-xs uppercase tracking-[0.2em] px-6 py-3 hover:bg-mint hover:text-ink transition-colors"
+          className="border border-mint text-mint text-sm px-5 py-3 hover:bg-mint hover:text-ink transition-colors"
         >
           I'm 18+, show me
         </button>
@@ -45,17 +45,16 @@ export default function CharacterDetail({ character }: { character: Character })
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`/art/characters/${c.folder}/${current.file}`}
-              alt={current.label ? `${c.name} — ${current.label}` : c.name}
+              alt={current.label ? `${c.name}, ${current.label}` : c.name}
               className="w-full object-contain max-h-[75vh]"
             />
             {current.nsfw && (
-              <span className="absolute top-2 right-2 font-mono text-[0.6rem] uppercase bg-ink text-mint border border-mint px-1.5 py-0.5">
+              <span className="absolute top-2 right-2 font-sans text-[0.6rem] uppercase bg-ink text-mint border border-mint px-1.5 py-0.5">
                 18+
               </span>
             )}
-            <p className="px-4 py-2.5 border-t border-line font-mono text-[0.65rem] uppercase tracking-[0.15em] text-muted">
-              Plate {String(Math.min(active, Math.max(images.length - 1, 0)) + 1).padStart(2, "0")}
-              <span className="ml-2 text-muted/60">/ {String(images.length).padStart(2, "0")}</span>
+            <p className="px-4 py-2.5 border-t border-line text-xs text-muted">
+              {Math.min(active, Math.max(images.length - 1, 0)) + 1} of {images.length}
             </p>
           </div>
         ) : (
@@ -85,7 +84,7 @@ export default function CharacterDetail({ character }: { character: Character })
                   className="w-full aspect-square object-cover"
                 />
                 {img.nsfw && (
-                  <span className="absolute top-0.5 right-0.5 font-mono text-[0.5rem] uppercase bg-ink text-mint px-0.5">
+                  <span className="absolute top-0.5 right-0.5 font-sans text-[0.5rem] uppercase bg-ink text-mint px-0.5">
                     18+
                   </span>
                 )}
@@ -98,12 +97,11 @@ export default function CharacterDetail({ character }: { character: Character })
       {/* Name, species, lore */}
       <Reveal>
         <div className="lg:sticky lg:top-28">
-          <p className="label-caps text-muted mb-4">Field entry</p>
-          <h1 className="font-display italic text-5xl sm:text-6xl text-bone leading-[0.95]">
+                    <h1 className="font-display text-5xl sm:text-6xl text-bone leading-[0.95]">
             {c.name}
           </h1>
           {c.species && !c.species.startsWith("[EDIT") && (
-            <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-muted mt-4">
+            <p className="text-sm text-muted mt-3">
               {c.species}
             </p>
           )}

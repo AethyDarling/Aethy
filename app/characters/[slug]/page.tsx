@@ -21,8 +21,8 @@ export async function generateMetadata({
   return {
     title: c.name,
     description: c.nsfw
-      ? `${c.name} — character page.`
-      : `${c.name} — character reference and lore by Aethy.`,
+      ? `${c.name}, character page.`
+      : `${c.name}, character reference and lore by Aethy.`,
   };
 }
 
@@ -39,9 +39,8 @@ export default async function CharacterPage({
     <div className="container-page pt-16 sm:pt-24">
       <Link
         href="/characters/"
-        className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone"
-      >
-        ← All characters
+        className="draw-link text-sm text-muted hover:text-bone"
+      >All characters
       </Link>
       <CharacterDetail character={character} />
     </div>

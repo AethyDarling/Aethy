@@ -54,7 +54,7 @@ export default function AgeGateModal({
             exit={{ y: 8, opacity: 0 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="label-caps text-mint mb-4">Content notice</p>
+            <p className="text-sm text-mint mb-4">Content notice</p>
             <h2 id="agegate-title" className="font-display text-2xl mb-3">
               Adult artwork ahead
             </h2>

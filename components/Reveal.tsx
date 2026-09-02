@@ -1,29 +1,12 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
-
-// Quiet scroll-reveal: rises a few pixels and fades in the first time it
-// enters the viewport. Honors prefers-reduced-motion.
+// Content is shown at rest. This wrapper used to fade blocks in on scroll;
+// it now renders children plainly and stays only so call sites keep working.
 export default function Reveal({
   children,
-  delay = 0,
   className,
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
 }) {
-  const reduced = useReducedMotion();
-  if (reduced) return <div className={className}>{children}</div>;
-  return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
+  return className ? <div className={className}>{children}</div> : <>{children}</>;
 }

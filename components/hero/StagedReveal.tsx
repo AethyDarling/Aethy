@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { theme } from "@/content/theme";
 
 // Fallback entrance when the artist supplies construction-stage PNGs
-// instead of an SVG: gesture → skeleton → masses → contour, each stage
+// instead of an SVG: gesture skeleton masses contour, each stage
 // wiping in over the last with a sharp masked reveal (clip-path, no
 // blurs or gradients), earlier stages dimming as the drawing resolves.
 

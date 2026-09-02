@@ -5,7 +5,7 @@ import { series } from "@/content/gallery";
 
 export const dynamic = "force-static";
 
-// NSFW-flagged characters are excluded — their pages exist but are not
+// NSFW-flagged characters are excluded; their pages exist but are not
 // advertised to crawlers. Gallery images live behind the gallery page and
 // are never listed individually.
 export default function sitemap(): MetadataRoute.Sitemap {

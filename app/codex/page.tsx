@@ -6,26 +6,25 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "Aether Codex",
   description:
-    "The Aether Codex — Aethy's fully custom, physics-based magic system: technical concept work outside the art sphere.",
+    "The Aether Codex, Aethy's fully custom physics-based magic system: technical concept work outside the art sphere.",
 };
 
-// What the codex demonstrates — technical concept work, deliberately
-// separate from the artwork: this is systems design, not illustration.
+// What the codex covers. Technical concept work, separate from the artwork.
 const facets = [
   {
     n: "01",
     title: "Physics-first system design",
-    text: "A layered-field hard-magic system written the way physics is: foundations first, unified under the Grand Unified Aether Equation, with behavior derived from the rules instead of decreed case by case.",
+    text: "A layered-field hard-magic system written the way physics is: foundations first, unified under the Grand Unified Aether Equation, with behavior derived from the rules.",
   },
   {
     n: "02",
     title: "Applied, tier by tier",
-    text: "Not a reskinned spell list — a Power Hierarchy with techniques worked out tier by tier, where the applications emerge from the mechanics and stay consistent because of it.",
+    text: "A Power Hierarchy with techniques worked out tier by tier, where the applications follow from the mechanics.",
   },
   {
     n: "03",
     title: "Reference-grade documentation",
-    text: "The complete reference, not an implication: a 439-entry Spell Directory and a full symbol glossary, specified so the system can be tested against itself.",
+    text: "A 439-entry Spell Directory and a full symbol glossary, specified so the system can be tested against itself.",
   },
 ];
 
@@ -35,16 +34,15 @@ export default function CodexPage() {
 
   return (
     <div className="container-page pt-16 sm:pt-24">
-      <SectionHeading label="01 — Technical concept work" title="Aether Codex">
+      <SectionHeading title="Aether Codex">
         {linkReady && (
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone shrink-0 mb-2"
+            className="draw-link font-sans text-[0.65rem] uppercase tracking-[0.08em] text-muted hover:text-bone shrink-0 mb-2"
           >
-            aethercodex.org ↗
-          </a>
+            aethercodex.org</a>
         )}
       </SectionHeading>
 
@@ -65,17 +63,16 @@ export default function CodexPage() {
 
           <div className="mt-20">
             <Reveal>
-              <p className="label-caps text-muted mb-2">02 — What it demonstrates</p>
+              <h2 className="font-display text-2xl text-bone pb-4">What it covers</h2>
             </Reveal>
             <div className="border-t border-line max-w-2xl">
               {facets.map((f, i) => (
                 <Reveal key={f.n} delay={i * 0.05}>
                   <div className="grid sm:grid-cols-[4rem_1fr] gap-x-6 gap-y-1 py-6 border-b border-line">
-                    <p className="font-mono text-[0.65rem] text-muted pt-1.5">{f.n}</p>
-                    <div>
-                      <h2 className="font-display text-xl sm:text-2xl text-bone mb-2">
+                    <div className="sm:col-span-2">
+                      <h3 className="font-display text-xl sm:text-2xl text-bone mb-2">
                         {f.title}
-                      </h2>
+                      </h3>
                       <p className="text-muted text-sm leading-relaxed">{f.text}</p>
                     </div>
                   </div>
@@ -87,22 +84,20 @@ export default function CodexPage() {
 
         <Reveal delay={0.1}>
           <div className="lg:sticky lg:top-28 border-t border-line lg:border lg:border-line lg:p-8 pt-8">
-            <p className="label-caps text-muted mb-6">03 — Visit</p>
+            <h2 className="font-display text-2xl text-bone mb-6">Visit</h2>
             <p className="text-muted text-sm leading-relaxed mb-8">
-              The codex lives on its own site, built to be read — this page is
-              just the doorway.
+              The codex lives on its own site. This page links to it.
             </p>
             {linkReady ? (
               <a
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block border border-bone bg-bone text-ink font-mono text-xs uppercase tracking-[0.25em] px-8 py-4 hover:bg-transparent hover:text-bone transition-colors"
+                className="inline-block border border-bone bg-bone text-ink font-sans text-xs uppercase tracking-[0.08em] px-8 py-4 hover:bg-transparent hover:text-bone transition-colors"
               >
-                Enter the codex ↗
-              </a>
+                Open aethercodex.org</a>
             ) : (
-              <p className="inline-block border border-line text-muted font-mono text-xs uppercase tracking-[0.25em] px-8 py-4">
+              <p className="inline-block border border-line text-muted font-sans text-xs uppercase tracking-[0.08em] px-8 py-4">
                 Link coming soon
               </p>
             )}

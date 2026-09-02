@@ -22,26 +22,21 @@ export default function Header() {
   const open = commissions.commissionsOpen;
 
   return (
-    <header className="sticky top-0 z-50 bg-ink/90 backdrop-blur-sm border-b border-line">
+    <header className="sticky top-0 z-50 bg-ink border-b border-line">
       <div className="container-page h-16 md:h-20 flex items-center gap-6">
         <Link
           href="/"
-          className="font-display text-xl tracking-[0.25em] text-bone shrink-0"
+          className="font-display text-xl tracking-[0.2em] text-bone shrink-0"
           onClick={() => setMenuOpen(false)}
         >
           AETHY
         </Link>
 
-        {/* Availability — a quiet status line, the way studio sites do it. */}
         <Link
           href="/commissions/"
-          className="hidden lg:inline-flex items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted hover:text-bone transition-colors"
+          className="hidden lg:inline-block text-sm text-muted hover:text-bone transition-colors"
         >
-          <span
-            aria-hidden
-            className={`inline-block w-1.5 h-1.5 rounded-full ${open ? "bg-mint" : "bg-rust"}`}
-          />
-          {open ? "Available for commissions" : "Commissions closed"}
+          {open ? "Commissions open" : "Commissions closed"}
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 ml-auto" aria-label="Main">
@@ -51,7 +46,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] ${
+                className={`draw-link text-sm ${
                   active ? "text-bone" : "text-muted hover:text-bone"
                 } transition-colors`}
               >
@@ -99,13 +94,9 @@ export default function Header() {
           <Link
             href="/commissions/"
             onClick={() => setMenuOpen(false)}
-            className="inline-flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted"
+            className="text-sm text-muted"
           >
-            <span
-              aria-hidden
-              className={`inline-block w-1.5 h-1.5 rounded-full ${open ? "bg-mint" : "bg-rust"}`}
-            />
-            {open ? "Available for commissions" : "Commissions closed"}
+            {open ? "Commissions open" : "Commissions closed"}
           </Link>
         </nav>
       )}
@@ -126,7 +117,7 @@ function NsfwToggle({
       aria-checked={showNsfw}
       aria-label="Show 18+ artwork"
       onClick={() => setShowNsfw(!showNsfw)}
-      className={`font-mono text-[0.6rem] uppercase tracking-[0.2em] border px-2.5 py-1 transition-colors ${
+      className={`text-xs border px-2.5 py-1 transition-colors ${
         showNsfw
           ? "border-mint text-ink bg-mint"
           : "border-line text-muted hover:border-muted hover:text-bone"
