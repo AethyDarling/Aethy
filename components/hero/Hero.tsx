@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import { site } from "@/content/site";
 import HeroStage from "./HeroStage";
 
 // Server component (runs at build time in the static export). It looks at
@@ -48,23 +47,13 @@ function findHeroImage(): string | null {
   return null;
 }
 
-function findParallaxLayers(): { src: string; title: string }[] {
-  // Ambient depth layers come from the artist's featured picks (SFW only,
-  // and only files that really exist). At most two, so the figure stays
-  // the undisputed centerpiece.
-  const dir = path.join(process.cwd(), "public", "art", "featured");
-  return site.featured
-    .filter((f) => !f.nsfw)
-    .filter((f) => fs.existsSync(path.join(dir, f.file)))
-    .slice(0, 2)
-    .map((f) => ({ src: `/art/featured/${f.file}`, title: f.title ?? "" }));
-}
 
 export default function Hero() {
   const svgMarkup = readHeroSvg();
   const stages = svgMarkup ? [] : findStages();
   const heroImage = svgMarkup || stages.length > 0 ? null : findHeroImage();
-  const layers = findParallaxLayers();
+  // Depth layers are off: the centerpiece stands alone.
+  const layers: { src: string; title: string }[] = [];
 
   return (
     <HeroStage
