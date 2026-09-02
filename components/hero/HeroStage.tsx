@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import {
   motion,
   useMotionValue,
@@ -133,12 +134,15 @@ export default function HeroStage({
             {site.roles.join(" · ")}
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 justify-center lg:justify-start">
-            <span className="text-sm text-muted">
-              {commissions.commissionsOpen ? "Commissions open" : "Commissions closed"}
-            </span>
-            <MagneticButton href="/commissions/" variant="outline">
-              Commissions
+            <MagneticButton
+              href={`mailto:${site.email}?subject=${encodeURIComponent("Project inquiry")}`}
+              variant="outline"
+            >
+              Contact
             </MagneticButton>
+            <Link href="/commissions/" className="draw-link text-sm text-muted hover:text-bone">
+              {commissions.commissionsOpen ? "Commissions open" : "Commissions closed"}
+            </Link>
           </div>
         </div>
 

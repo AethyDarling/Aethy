@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { seriesLabel, type GalleryPiece, type GallerySeries } from "@/content/gallery";
 import { useNsfw } from "@/components/NsfwContext";
 import Lightbox from "./Lightbox";
+import NsfwToggle from "@/components/NsfwToggle";
 
 // The gallery: tag and series filtering with animated transitions, masonry
 // columns, and a lightbox. NSFW pieces are filtered out of the data BEFORE
@@ -83,6 +84,8 @@ export default function GalleryClient({
     );
   }
 
+  const hasAdult = pieces.some((p) => p.nsfw);
+
   const tabClass = (active: boolean) =>
     `text-sm capitalize pb-1 border-b transition-colors ${
       active ? "border-bone text-bone" : "border-transparent text-muted hover:text-bone"
@@ -92,7 +95,7 @@ export default function GalleryClient({
     <>
       {/* Filter rows; plain tracked-caps text, underline marks the active one. */}
       <div className="mb-12 space-y-4">
-        <div className="flex flex-wrap gap-x-7 gap-y-3" role="toolbar" aria-label="Filter by category">
+        <div className="flex flex-wrap items-center gap-x-7 gap-y-3" role="toolbar" aria-label="Filter by category">
           <button
             onClick={() => setFilter({ kind: "all" })}
             aria-pressed={filter.kind === "all"}
@@ -109,10 +112,11 @@ export default function GalleryClient({
                 aria-pressed={active}
                 className={tabClass(active)}
               >
-                {tag}
+                {tag === "wip" ? "WIP" : tag}
               </button>
             );
           })}
+          <span className="ml-auto"><NsfwToggle show={hasAdult} /></span>
         </div>
         {visibleSeries.length > 0 && (
           <div className="flex flex-wrap items-baseline gap-x-7 gap-y-3" role="toolbar" aria-label="Filter by series">

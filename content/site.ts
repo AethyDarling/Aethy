@@ -111,9 +111,8 @@ export const site: SiteConfig = {
   // Your public contact email.
   email: "aethy@aethy.studio",
 
-  // SFW share image for link previews. "" = none yet.
-  // Example once you've placed one: "art/featured/ascension.webp"
-  ogImage: "",
+  // SFW share image for link previews (Slack, email, social). Path relative to /public.
+  ogImage: "art/featured/crowned-figure-flats.webp",
 
   // Your links, in display order. Copy a { ... }, block to add more.
   socials: [

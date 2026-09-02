@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { commissions } from "@/content/commissions";
-import { useNsfw } from "./NsfwContext";
 
 const nav = [
   { href: "/gallery/", label: "Work" },
@@ -17,7 +16,6 @@ const nav = [
 
 export default function Header() {
   const pathname = usePathname();
-  const { showNsfw, setShowNsfw } = useNsfw();
   const [menuOpen, setMenuOpen] = useState(false);
   const open = commissions.commissionsOpen;
 
@@ -54,11 +52,9 @@ export default function Header() {
               </Link>
             );
           })}
-          <NsfwToggle showNsfw={showNsfw} setShowNsfw={setShowNsfw} />
         </nav>
 
         <div className="md:hidden ml-auto flex items-center gap-4">
-          <NsfwToggle showNsfw={showNsfw} setShowNsfw={setShowNsfw} />
           <button
             className="text-muted hover:text-bone p-1"
             aria-expanded={menuOpen}
@@ -101,29 +97,5 @@ export default function Header() {
         </nav>
       )}
     </header>
-  );
-}
-
-function NsfwToggle({
-  showNsfw,
-  setShowNsfw,
-}: {
-  showNsfw: boolean;
-  setShowNsfw: (on: boolean) => void;
-}) {
-  return (
-    <button
-      role="switch"
-      aria-checked={showNsfw}
-      aria-label="Show 18+ artwork"
-      onClick={() => setShowNsfw(!showNsfw)}
-      className={`text-xs border px-2.5 py-1 transition-colors ${
-        showNsfw
-          ? "border-mint text-ink bg-mint"
-          : "border-line text-muted hover:border-muted hover:text-bone"
-      }`}
-    >
-      18+ {showNsfw ? "on" : "off"}
-    </button>
   );
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Character } from "@/content/characters";
 import { useNsfw } from "@/components/NsfwContext";
 import Reveal from "@/components/Reveal";
+import NsfwToggle from "@/components/NsfwToggle";
 
 // Character cards. A character flagged nsfw at the top level is entirely
 // absent (card, name, thumbnail) until the visitor confirms 18+.
@@ -14,6 +15,7 @@ export default function CharacterIndex({
 }) {
   const { showNsfw } = useNsfw();
   const visible = characters.filter((c) => showNsfw || !c.nsfw);
+  const hasAdult = characters.some((c) => c.nsfw || c.images.some((i) => i.nsfw));
 
   if (visible.length === 0) {
     return (
@@ -31,6 +33,10 @@ export default function CharacterIndex({
   }
 
   return (
+    <>
+    {hasAdult && (
+      <div className="flex justify-end mb-6"><NsfwToggle show={hasAdult} /></div>
+    )}
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
       {visible.map((c, i) => {
         // Thumbnail must itself be SFW-safe: if the chosen thumbnail image
@@ -77,5 +83,6 @@ export default function CharacterIndex({
         );
       })}
     </div>
+    </>
   );
 }
