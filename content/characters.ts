@@ -19,8 +19,8 @@
 export type CharacterImage = {
   /** Filename inside that character's folder — must match exactly, including .jpg/.png/.webp */
   file: string;
-  /** A short label for this image, e.g. "Reference sheet" or "Winter outfit". */
-  label: string;
+  /** Optional. Images are shown unlabelled (just "Plate 01", "Plate 02", …); if given, used only as accessible alt text. */
+  label?: string;
   /** true if THIS image is adult (hidden until the visitor confirms 18+), false otherwise. */
   nsfw: boolean;
 };
@@ -73,32 +73,26 @@ export const characters: Character[] = [
     images: [
       {
         file: "aethy-character-example-7.webp",
-        label: "Colored bust",
         nsfw: false,
       },
       {
         file: "aethy-character-example-6.webp",
-        label: "Sketch bust",
         nsfw: false,
       },
       {
         file: "aethy-character-example-8.webp",
-        label: "Leaping pose",
         nsfw: false,
       },
       {
         file: "aethy-character-example-9.webp",
-        label: "Kneeling pose",
         nsfw: false,
       },
       {
         file: "aethy-character-example-10.webp",
-        label: "Sitting study",
         nsfw: false,
       },
       {
         file: "aethy-character-example-5.webp",
-        label: "Crawl study",
         nsfw: false,
       },
       // The gesture / lines / flats / light stages of the crawl study are

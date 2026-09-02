@@ -22,8 +22,8 @@ export type SocialLink = {
 export type FeaturedPiece = {
   /** Filename inside public/art/featured/ — must match exactly, including .jpg/.png/.webp */
   file: string;
-  /** Title shown with the piece. */
-  title: string;
+  /** Optional — pieces are shown untitled; if given, used only as accessible alt text. */
+  title?: string;
   /** true if adult — featured pieces marked true are NEVER shown on the homepage, so keep this strip all-ages. */
   nsfw: boolean;
 };
@@ -141,32 +141,26 @@ export const site: SiteConfig = {
   featured: [
     {
       file: "crowned-figure-flats.webp",
-      title: "Crowned figure — flats",
       nsfw: false,
     },
     {
       file: "kneeling-reach.webp",
-      title: "Kneeling reach",
       nsfw: false,
     },
     {
       file: "porcelain-bust.webp",
-      title: "Porcelain bust",
       nsfw: false,
     },
     {
       file: "crowned-figure-construction.webp",
-      title: "Crowned figure — construction",
       nsfw: false,
     },
     {
       file: "amber-torso-study.webp",
-      title: "Amber torso study",
       nsfw: false,
     },
     {
       file: "leaping-figure.webp",
-      title: "Leaping figure",
       nsfw: false,
     },
   ],

@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import type { GalleryPiece, GallerySeries } from "@/content/gallery";
+import { seriesLabel, type GalleryPiece, type GallerySeries } from "@/content/gallery";
 import { useNsfw } from "@/components/NsfwContext";
 import Lightbox from "./Lightbox";
 
@@ -128,7 +128,7 @@ export default function GalleryClient({
                   aria-pressed={active}
                   className={tabClass(active)}
                 >
-                  {s.title}
+                  {seriesLabel(s)}
                 </button>
               );
             })}
@@ -165,13 +165,13 @@ export default function GalleryClient({
               <button
                 onClick={() => setLightboxIndex(i)}
                 className="block w-full text-left group"
-                aria-label={`Open ${p.title}`}
+                aria-label="Open artwork"
               >
                 <span className="trace relative block border border-line">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`/art/gallery/${p.file}`}
-                    alt={p.title}
+                    alt={p.title ?? "Artwork by Aethy"}
                     loading="lazy"
                     decoding="async"
                     className="trace-img w-full block"
@@ -182,15 +182,14 @@ export default function GalleryClient({
                     </span>
                   )}
                 </span>
-                {/* Caption: title, then the credit line — never a date. */}
-                <figcaption className="pt-3">
-                  <span className="block text-sm text-bone">{p.title}</span>
-                  {p.credit && (
-                    <span className="block font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted mt-1">
+                {/* Pieces are untitled; the only caption is a credit line, when one exists. */}
+                {p.credit && (
+                  <figcaption className="pt-3">
+                    <span className="block font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted">
                       {p.credit}
                     </span>
-                  )}
-                </figcaption>
+                  </figcaption>
+                )}
               </button>
             </motion.figure>
           ))}

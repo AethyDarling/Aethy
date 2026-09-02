@@ -32,8 +32,12 @@
 export type GalleryPiece = {
   /** The image's filename inside public/art/gallery/ — must match exactly, including .jpg/.png/.webp */
   file: string;
-  /** The piece's title, shown under/over the image. */
-  title: string;
+  /**
+   * Optional title. Pieces are shown untitled by default — the image
+   * speaks for itself. If given, it's used only as the image's accessible
+   * alt text, never displayed.
+   */
+  title?: string;
   /** A sentence or two about the piece. Shown when the piece is opened. Can be "" if you have nothing to say. */
   description: string;
   /** When you finished it, as "YYYY-MM" (year and month). Used to sort the gallery, newest first. */
@@ -57,11 +61,18 @@ export type GalleryPiece = {
 export type GallerySeries = {
   /** Short id used in the web address and in pieces' `series` fields — lowercase, hyphens, no spaces. */
   id: string;
-  /** The series title, e.g. "Crowned figure". */
-  title: string;
+  /** Optional title. Left out, the series is labelled by its number ("Series 01"). */
+  title?: string;
   /** One paragraph on the intent of the series, shown at the top of its page. */
   intro: string;
 };
+
+/** The label a series is shown under: its title if it has one, else "Series 01", "Series 02", … by position. */
+export function seriesLabel(s: GallerySeries): string {
+  if (s.title) return s.title;
+  const i = series.findIndex((x) => x.id === s.id);
+  return `Series ${String(i + 1).padStart(2, "0")}`;
+}
 
 /**
  * Series — bodies of work. Pieces are ordered oldest-first on a series
@@ -70,13 +81,11 @@ export type GallerySeries = {
 export const series: GallerySeries[] = [
   {
     id: "crowned-figure",
-    title: "Crowned figure",
     intro:
       "An ornamented figure taken from symmetrical construction lines through to a flat colour pass — the crown, horns, and blade motif blocked in over the structure before any rendering.",
   },
   {
     id: "winged-creature",
-    title: "Winged creature",
     intro:
       "A creature design built in two passes: the anatomy first — full-figure front with feathered ears — then armour laid directly over it, so every plate follows the muscle group underneath.",
   },
@@ -92,9 +101,6 @@ export const gallery: GalleryPiece[] = [
   //   // The filename of the image in public/art/gallery/ — spelling and
   //   // capitalization must match the actual file exactly.
   //   file: "torso-study-03.webp",
-  //
-  //   // The title visitors see.
-  //   title: "Torso Study III",
   //
   //   // A short description. Keep it to a sentence or two.
   //   description: "Third in a series of muscle-layer studies, focusing on the obliques.",
@@ -114,7 +120,6 @@ export const gallery: GalleryPiece[] = [
   // real finish dates whenever; the gallery sorts newest-first by this field.
   {
     file: "crowned-figure-flats.webp",
-    title: "Crowned figure — flats",
     description:
       "Flat colour pass on an ornamented figure — crown, horns, and blade motif blocked in over the construction lines.",
     date: "2026-08",
@@ -124,7 +129,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "crowned-figure-construction.webp",
-    title: "Crowned figure — construction",
     description:
       "The same figure one stage earlier: symmetrical construction line work, white on black.",
     date: "2026-07",
@@ -134,7 +138,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "crawl-study.webp",
-    title: "Crawl study",
     description:
       "Weight on all fours in low light — scapula, spine, and loaded shoulders doing the storytelling.",
     date: "2026-06",
@@ -143,7 +146,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "kneeling-reach.webp",
-    title: "Kneeling reach",
     description:
       "Silhouette-first pose study — a kneeling figure reaching into the dark.",
     date: "2026-05",
@@ -152,7 +154,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "porcelain-bust.webp",
-    title: "Porcelain bust",
     description:
       "Painted head study — cracked porcelain over dark fur, lit from within.",
     date: "2026-04",
@@ -161,7 +162,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "leaping-figure.webp",
-    title: "Leaping figure",
     description:
       "Full-figure gesture pushed to a finished contour — the twist through the torso carries the jump.",
     date: "2026-03",
@@ -170,7 +170,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "winged-creature-armor.webp",
-    title: "Winged creature — armour pass",
     description:
       "Armour design built directly over the anatomy pass, so every plate follows a muscle group underneath.",
     date: "2026-02",
@@ -180,7 +179,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "winged-creature-anatomy.webp",
-    title: "Winged creature — anatomy pass",
     description:
       "The base body for the armour design: full-figure front, feathered ears, structure before costume.",
     date: "2026-01",
@@ -190,7 +188,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "amber-torso-study.webp",
-    title: "Amber torso study",
     description:
       "Torso and shoulder-girdle study in warm flats, construction sketch still visible behind.",
     date: "2025-12",
@@ -199,7 +196,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "drapery-study.webp",
-    title: "Drapery study",
     description:
       "Cloth against a standing figure — fold weight and gather, line kept loose below the waist.",
     date: "2025-11",
@@ -208,7 +204,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "sitting-study.webp",
-    title: "Sitting study",
     description:
       "Quiet seated pose on toned ground — hands clasped, tail wrapping the composition closed.",
     date: "2025-10",
@@ -219,7 +214,6 @@ export const gallery: GalleryPiece[] = [
   // Sketchbook — loose studies, kept deliberately rough.
   {
     file: "sketch-head-study.webp",
-    title: "Head study",
     description: "Quick construction of a long-muzzled head — planes first, fur direction second.",
     date: "2025-09",
     tags: ["sketchbook", "anatomy"],
@@ -227,7 +221,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "sketch-profile-headphones.webp",
-    title: "Profile with headphones",
     description: "A loose profile sketch — skull shape, ear placement, and how the band sits against both.",
     date: "2025-08",
     tags: ["sketchbook"],
@@ -235,7 +228,6 @@ export const gallery: GalleryPiece[] = [
   },
   {
     file: "sketch-goblin-bust.webp",
-    title: "Goblin bust",
     description: "Rough bust with the arm thrown over the shoulder — mass and gesture before any cleanup.",
     date: "2025-07",
     tags: ["sketchbook", "character design"],
