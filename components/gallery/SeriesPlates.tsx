@@ -29,7 +29,7 @@ export default function SeriesPlates({ pieces }: { pieces: GalleryPiece[] }) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/art/gallery/${p.file}`}
-                  alt={p.title}
+                  alt={p.title ?? "Artwork by Aethy"}
                   loading={i === 0 ? "eager" : "lazy"}
                   decoding="async"
                   className="w-full block"
@@ -45,16 +45,13 @@ export default function SeriesPlates({ pieces }: { pieces: GalleryPiece[] }) {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span>
-                  <span className="block font-display text-xl sm:text-2xl text-bone">
-                    {p.title}
-                  </span>
                   {p.credit && (
-                    <span className="block font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted mt-1">
+                    <span className="block font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted">
                       {p.credit}
                     </span>
                   )}
                   {p.description && (
-                    <span className="block text-muted text-sm leading-relaxed mt-3 max-w-2xl">
+                    <span className="block text-muted text-sm leading-relaxed max-w-2xl">
                       {p.description}
                     </span>
                   )}

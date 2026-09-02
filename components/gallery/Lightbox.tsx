@@ -58,7 +58,7 @@ export default function Lightbox({
           transition={{ duration: 0.2 }}
           role="dialog"
           aria-modal="true"
-          aria-label={piece.title}
+          aria-label="Artwork"
         >
           <button
             aria-label="Close"
@@ -90,7 +90,7 @@ export default function Lightbox({
               <motion.img
                 key={piece.file}
                 src={`/art/gallery/${piece.file}`}
-                alt={piece.title}
+                alt={piece.title ?? "Artwork by Aethy"}
                 className="relative max-h-full max-w-full object-contain border border-line select-none"
                 draggable={false}
                 initial={{ opacity: 0, x: 24 }}
@@ -114,14 +114,11 @@ export default function Lightbox({
           {/* Caption */}
           <div className="relative border-t border-line bg-surface px-5 py-4 shrink-0">
             <div className="max-w-3xl mx-auto flex flex-wrap items-baseline gap-x-6 gap-y-1.5">
-              <h2 className="font-display text-xl text-bone">
-                {piece.title}
-                {piece.nsfw && (
-                  <span className="ml-3 align-middle font-mono text-[0.6rem] uppercase tracking-[0.15em] text-mint border border-mint px-1.5 py-0.5">
-                    18+
-                  </span>
-                )}
-              </h2>
+              {piece.nsfw && (
+                <span className="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-mint border border-mint px-1.5 py-0.5">
+                  18+
+                </span>
+              )}
               {piece.credit && (
                 <p className="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-muted">
                   {piece.credit}

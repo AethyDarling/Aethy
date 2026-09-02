@@ -57,7 +57,7 @@ function findParallaxLayers(): { src: string; title: string }[] {
     .filter((f) => !f.nsfw)
     .filter((f) => fs.existsSync(path.join(dir, f.file)))
     .slice(0, 2)
-    .map((f) => ({ src: `/art/featured/${f.file}`, title: f.title }));
+    .map((f) => ({ src: `/art/featured/${f.file}`, title: f.title ?? "" }));
 }
 
 export default function Hero() {

@@ -18,14 +18,18 @@ import Reveal from "@/components/Reveal";
 // SFW-only here and only files that actually exist render; nothing is
 // invented.
 
-type HomePiece = { src: string; title: string };
+type HomePiece = { src: string; file: string; alt: string };
 
 function collectWork(): HomePiece[] {
   const featuredDir = path.join(process.cwd(), "public", "art", "featured");
   const curated: HomePiece[] = site.featured
     .filter((f) => !f.nsfw)
     .filter((f) => fs.existsSync(path.join(featuredDir, f.file)))
-    .map((f) => ({ src: `/art/featured/${f.file}`, title: f.title }));
+    .map((f) => ({
+      src: `/art/featured/${f.file}`,
+      file: f.file,
+      alt: f.title ?? "Artwork by Aethy",
+    }));
 
   // When the curated strip is thin, backfill with the newest SFW gallery
   // pieces so the homepage always leads with as much work as exists.
@@ -35,8 +39,12 @@ function collectWork(): HomePiece[] {
     .filter((p) => !p.nsfw)
     .filter((p) => fs.existsSync(path.join(galleryDir, p.file)))
     .sort((a, b) => (a.date < b.date ? 1 : -1))
-    .map((p) => ({ src: `/art/gallery/${p.file}`, title: p.title }))
-    .filter((p) => !curated.some((c) => c.title === p.title));
+    .map((p) => ({
+      src: `/art/gallery/${p.file}`,
+      file: p.file,
+      alt: p.title ?? "Artwork by Aethy",
+    }))
+    .filter((p) => !curated.some((c) => c.file === p.file));
   return [...curated, ...fallback].slice(0, 9);
 }
 
@@ -105,13 +113,10 @@ export default function HomePage() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={piece.src}
-                        alt={piece.title}
+                        alt={piece.alt}
                         loading={i < 3 ? "eager" : "lazy"}
                         className="trace-img w-full aspect-[4/5] object-cover"
                       />
-                    </span>
-                    <span className="block pt-3 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted group-hover:text-bone transition-colors">
-                      {piece.title}
                     </span>
                   </Link>
                 </Reveal>
