@@ -35,18 +35,16 @@ export default function SeriesPlates({ pieces }: { pieces: GalleryPiece[] }) {
                   className="w-full block"
                 />
                 {p.nsfw && (
-                  <span className="absolute top-2 right-2 font-mono text-[0.6rem] uppercase tracking-[0.15em] bg-ink text-mint border border-mint px-1.5 py-0.5">
+                  <span className="absolute top-2 right-2 font-sans text-[0.6rem] uppercase tracking-[0.08em] bg-ink text-mint border border-mint px-1.5 py-0.5">
                     18+
                   </span>
                 )}
               </span>
               <figcaption className="grid sm:grid-cols-[4rem_1fr] gap-x-6 gap-y-2 pt-4">
-                <span className="font-mono text-[0.65rem] text-muted pt-1">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                <span className="text-sm text-muted pt-0.5">{i + 1}</span>
                 <span>
                   {p.credit && (
-                    <span className="block font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted">
+                    <span className="block text-sm text-muted">
                       {p.credit}
                     </span>
                   )}

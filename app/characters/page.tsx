@@ -5,13 +5,13 @@ import CharacterIndex from "@/components/characters/CharacterIndex";
 
 export const metadata: Metadata = {
   title: "Characters",
-  description: "Aethy's characters — reference sheets, anatomy, and lore.",
+  description: "Aethy's characters, reference sheets, anatomy, and lore.",
 };
 
 export default function CharactersPage() {
   return (
     <div className="container-page pt-16 sm:pt-24">
-      <SectionHeading label="01 — The bestiary" title="Characters" />
+      <SectionHeading title="Characters" />
       <CharacterIndex characters={characters} />
     </div>
   );

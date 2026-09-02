@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Cormorant, Source_Sans_3 } from "next/font/google";
 import { theme } from "@/content/theme";
 import { site } from "@/content/site";
 import { NsfwProvider } from "@/components/NsfwContext";
@@ -7,22 +7,19 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-// Display: Cormorant — a high-contrast garalde with engraved-plate
-// elegance, the typographic voice of the site's field-guide framing;
-// weight/tracking are layered on by the .font-display rule in
-// globals.css, and its italic carries specimen names. Body: Inter,
-// quiet and neutral, so the plates stay legible.
+// Display: Cormorant, a high-contrast garalde; weight and tracking are
+// layered on by the .font-display rule in globals.css. Body: Source Sans 3,
+// a neutral humanist sans. Two families, no more.
 const display = Cormorant({
   subsets: ["latin"],
   weight: ["500", "600"],
   style: ["normal", "italic"],
   variable: "--font-display",
 });
-const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const mono = IBM_Plex_Mono({
+const sans = Source_Sans_3({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
 });
 
 const ogImages = site.ogImage ? [{ url: `/${site.ogImage}` }] : [];
@@ -30,8 +27,8 @@ const ogImages = site.ogImage ? [{ url: `/${site.ogImage}` }] : [];
 export const metadata: Metadata = {
   metadataBase: new URL(site.siteUrl),
   title: {
-    default: `${site.artistName} — Concept Artist`,
-    template: `%s — ${site.artistName}`,
+    default: `${site.artistName}, concept artist`,
+    template: `%s | ${site.artistName}`,
   },
   description: site.tagline,
   openGraph: {
@@ -82,7 +79,7 @@ export default function RootLayout({
     <html
       lang="en"
       style={cssVars}
-      className={`${display.variable} ${sans.variable} ${mono.variable}`}
+      className={`${display.variable} ${sans.variable}`}
     >
       <body className="font-sans min-h-dvh flex flex-col">
         <NsfwProvider>

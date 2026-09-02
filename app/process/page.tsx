@@ -8,19 +8,18 @@ import ProcessViewer from "@/components/process/ProcessViewer";
 export const metadata: Metadata = {
   title: "Process",
   description:
-    "Stage-by-stage breakdowns of how Aethy builds a piece — gesture and construction first, then line, colour, and light.",
+    "Stage-by-stage breakdowns of how Aethy builds a piece, gesture and construction first, then line, colour, and light.",
 };
 
 export default function ProcessPage() {
   return (
     <div className="max-w-6xl mx-auto px-6 md:px-10 pt-16 sm:pt-24">
-      <SectionHeading label="01 — How it's built" title="Process">
+      <SectionHeading title="Process">
         <Link
           href="/gallery/"
-          className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone shrink-0 mb-2"
+          className="draw-link text-sm text-muted hover:text-bone shrink-0 mb-2"
         >
-          Finished work →
-        </Link>
+          Finished work</Link>
       </SectionHeading>
 
       {process.length > 0 ? (

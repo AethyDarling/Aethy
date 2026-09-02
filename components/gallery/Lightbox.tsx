@@ -6,7 +6,7 @@ import type { GalleryPiece } from "@/content/gallery";
 
 // Polished lightbox: keyboard arrows + Escape, swipe/drag to navigate,
 // caption panel with title/description/date/tags. Flat surfaces and
-// hairline borders — no glows.
+// hairline borders; no glows.
 
 export default function Lightbox({
   pieces,
@@ -69,7 +69,7 @@ export default function Lightbox({
 
           {/* Top bar */}
           <div className="relative flex items-center justify-between px-5 h-14 border-b border-line shrink-0">
-            <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted">
+            <p className="font-sans text-[0.65rem] uppercase tracking-[0.08em] text-muted">
               {index! + 1} / {pieces.length}
             </p>
             <button
@@ -84,7 +84,7 @@ export default function Lightbox({
             </button>
           </div>
 
-          {/* Image area — drag horizontally to navigate */}
+          {/* Image area; drag horizontally to navigate */}
           <div className="relative flex-1 min-h-0 flex items-center justify-center p-4 sm:p-8">
             <AnimatePresence mode="wait">
               <motion.img
@@ -115,18 +115,18 @@ export default function Lightbox({
           <div className="relative border-t border-line bg-surface px-5 py-4 shrink-0">
             <div className="max-w-3xl mx-auto flex flex-wrap items-baseline gap-x-6 gap-y-1.5">
               {piece.nsfw && (
-                <span className="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-mint border border-mint px-1.5 py-0.5">
+                <span className="font-sans text-[0.6rem] uppercase tracking-[0.08em] text-mint border border-mint px-1.5 py-0.5">
                   18+
                 </span>
               )}
               {piece.credit && (
-                <p className="font-mono text-[0.65rem] uppercase tracking-[0.15em] text-muted">
+                <p className="font-sans text-[0.65rem] uppercase tracking-[0.08em] text-muted">
                   {piece.credit}
                 </p>
               )}
-              <p className="font-mono text-[0.65rem] text-muted">{piece.date}</p>
+              <p className="font-sans text-[0.65rem] text-muted">{piece.date}</p>
               {piece.tags.length > 0 && (
-                <p className="font-mono text-[0.65rem] uppercase tracking-[0.1em] text-muted">
+                <p className="font-sans text-[0.65rem] uppercase tracking-[0.05em] text-muted">
                   {piece.tags.join(" · ")}
                 </p>
               )}

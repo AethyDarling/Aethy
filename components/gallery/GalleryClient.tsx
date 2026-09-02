@@ -9,7 +9,7 @@ import Lightbox from "./Lightbox";
 
 // The gallery: tag and series filtering with animated transitions, masonry
 // columns, and a lightbox. NSFW pieces are filtered out of the data BEFORE
-// render unless the visitor has confirmed 18+ — their thumbnails never
+// render unless the visitor has confirmed 18+; their thumbnails never
 // mount, so nothing adult is fetched or preloaded ahead of consent.
 
 type Filter = { kind: "all" } | { kind: "tag"; value: string } | { kind: "series"; value: string };
@@ -43,7 +43,7 @@ export default function GalleryClient({
       if (!showNsfw && p.nsfw) continue;
       p.tags.forEach((x) => t.add(x));
     }
-    // Anatomy leads the row — it's the signature category; sketchbook closes it.
+    // Anatomy leads the row; it's the signature category; sketchbook closes it.
     return Array.from(t).sort((a, b) => {
       if (a === "anatomy") return -1;
       if (b === "anatomy") return 1;
@@ -70,7 +70,7 @@ export default function GalleryClient({
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div key={i} className="art-slot aspect-[4/5]">
             <p>
-              artwork slot — 1600×2000
+              artwork slot, 1600×2000
               <br />
               <span className="normal-case tracking-normal">
                 drop images in /public/art/gallery/ and add entries to
@@ -84,13 +84,13 @@ export default function GalleryClient({
   }
 
   const tabClass = (active: boolean) =>
-    `font-mono text-[0.65rem] uppercase tracking-[0.2em] pb-1 border-b transition-colors ${
+    `text-sm capitalize pb-1 border-b transition-colors ${
       active ? "border-bone text-bone" : "border-transparent text-muted hover:text-bone"
     }`;
 
   return (
     <>
-      {/* Filter rows — plain tracked-caps text, underline marks the active one. */}
+      {/* Filter rows; plain tracked-caps text, underline marks the active one. */}
       <div className="mb-12 space-y-4">
         <div className="flex flex-wrap gap-x-7 gap-y-3" role="toolbar" aria-label="Filter by category">
           <button
@@ -98,7 +98,7 @@ export default function GalleryClient({
             aria-pressed={filter.kind === "all"}
             className={tabClass(filter.kind === "all")}
           >
-            all
+            All
           </button>
           {tags.map((tag) => {
             const active = filter.kind === "tag" && filter.value === tag;
@@ -116,9 +116,7 @@ export default function GalleryClient({
         </div>
         {visibleSeries.length > 0 && (
           <div className="flex flex-wrap items-baseline gap-x-7 gap-y-3" role="toolbar" aria-label="Filter by series">
-            <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted/70">
-              Series
-            </span>
+            <span className="text-sm text-muted/70">Series</span>
             {visibleSeries.map((s) => {
               const active = filter.kind === "series" && filter.value === s.id;
               return (
@@ -142,10 +140,9 @@ export default function GalleryClient({
           <p className="text-muted text-sm leading-relaxed">{activeSeries.intro}</p>
           <Link
             href={`/series/${activeSeries.id}/`}
-            className="draw-link inline-block font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone mt-4"
+            className="draw-link inline-block text-sm text-muted hover:text-bone mt-4"
           >
-            Open the series →
-          </Link>
+            Open the series page</Link>
         </div>
       )}
 
@@ -177,7 +174,7 @@ export default function GalleryClient({
                     className="trace-img w-full block"
                   />
                   {p.nsfw && (
-                    <span className="absolute top-2 right-2 font-mono text-[0.6rem] uppercase tracking-[0.15em] bg-ink text-mint border border-mint px-1.5 py-0.5">
+                    <span className="absolute top-2 right-2 font-sans text-[0.6rem] uppercase tracking-[0.08em] bg-ink text-mint border border-mint px-1.5 py-0.5">
                       18+
                     </span>
                   )}
@@ -185,7 +182,7 @@ export default function GalleryClient({
                 {/* Pieces are untitled; the only caption is a credit line, when one exists. */}
                 {p.credit && (
                   <figcaption className="pt-3">
-                    <span className="block font-mono text-[0.6rem] uppercase tracking-[0.18em] text-muted">
+                    <span className="block text-sm text-muted">
                       {p.credit}
                     </span>
                   </figcaption>

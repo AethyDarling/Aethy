@@ -1,16 +1,16 @@
 // =============================================================================
-// PROCESS — step-by-step breakdowns of how a piece gets built.
+// PROCESS; step-by-step breakdowns of how a piece gets built.
 //
 // This is the showcase for your workflow: a viewer steps (or plays) through
 // the stages of a drawing and watches it come together, gesture first.
 //
 // HOW TO ADD A SERIES:
-//   1. Put the stage images in a folder under public/art/ (any folder — a
+//   1. Put the stage images in a folder under public/art/ (any folder; a
 //      character folder is fine, or make public/art/process/).
 //   2. Copy a { ... }, block below and list the stages IN ORDER, earliest
 //      first. Two stages is enough; five or six is a great walkthrough.
 //
-// The `caption` on each stage is YOUR commentary — what you're actually
+// The `caption` on each stage is YOUR commentary; what you're actually
 // doing at that step. Leave it as "" and the stage shows just its name;
 // the page looks right either way, so fill them in whenever you feel like it.
 //
@@ -20,9 +20,9 @@
 //   - Every line inside an entry ends with a comma
 // =============================================================================
 
-/** One stage in a process series. (Shape definition — don't edit.) */
+/** One stage in a process series. (Shape definition; don't edit.) */
 export type ProcessStage = {
-  /** Path to the image from inside /public — e.g. "art/characters/aethy/step-1.webp" */
+  /** Path to the image from inside /public; e.g. "art/characters/aethy/step-1.webp" */
   src: string;
   /** Short name for this stage, e.g. "Gesture", "Flats", "Render". */
   name: string;
@@ -30,7 +30,7 @@ export type ProcessStage = {
   caption: string;
 };
 
-/** One process series. (Shape definition — don't edit.) */
+/** One process series. (Shape definition; don't edit.) */
 export type ProcessSeries = {
   /** URL-safe id, lowercase with hyphens. Used as the anchor link on the page. */
   id: string;
@@ -45,7 +45,7 @@ export type ProcessSeries = {
 };
 
 /**
- * Your process series. The one below is the crawling-creature piece —
+ * Your process series. The one below is the crawling-creature piece -
  * the stage images already in the repo, in the order you drew them.
  * The stage names describe what's visible in each file; the `caption`
  * lines are left blank for you to say what you're actually doing.

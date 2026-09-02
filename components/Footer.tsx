@@ -10,12 +10,10 @@ export default function Footer() {
             <p className="font-display text-2xl tracking-[0.2em] text-bone">
               AETHY
             </p>
-            <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted mt-3">
-              {site.roles.join("  |  ")}
-            </p>
+            <p className="text-sm text-muted mt-3">{site.roles.join(" · ")}</p>
             <a
               href={`mailto:${site.email}`}
-              className="draw-link inline-block font-mono text-sm tracking-[0.1em] text-bone mt-6"
+              className="draw-link inline-block text-sm text-bone mt-6"
             >
               {site.email}
             </a>
@@ -30,7 +28,7 @@ export default function Footer() {
                 href={s.url}
                 target={s.url.startsWith("mailto:") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone transition-colors"
+                className="draw-link text-sm text-muted hover:text-bone transition-colors"
               >
                 {s.label}
               </a>
@@ -38,12 +36,8 @@ export default function Footer() {
           </nav>
         </div>
         <div className="flex flex-wrap items-baseline justify-between gap-4 border-t border-line mt-12 pt-6">
-          <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
-            © {year} {site.artistName}
-          </p>
-          <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
-            All artwork mine — do not repost
-          </p>
+          <p className="text-xs text-muted">© {year} {site.artistName}</p>
+          <p className="text-xs text-muted">All artwork is mine. Please do not repost.</p>
         </div>
       </div>
     </footer>

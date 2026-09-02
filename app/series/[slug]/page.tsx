@@ -49,12 +49,11 @@ export default async function SeriesPage({
     <div className="container-page pt-16 sm:pt-24">
       <Link
         href="/gallery/"
-        className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone"
-      >
-        ← All work
+        className="draw-link text-sm text-muted hover:text-bone"
+      >All work
       </Link>
       <div className="mt-10">
-        <SectionHeading label={`${pieces.length} pieces`} title={seriesLabel(s)} />
+        <SectionHeading title={seriesLabel(s)} />
       </div>
 
       <Reveal>
@@ -65,7 +64,7 @@ export default async function SeriesPage({
 
       <SeriesPlates pieces={pieces} />
 
-      {/* Prev / next series — the chaining convention between bodies of work. */}
+      {/* Previous and next series. */}
       <nav
         aria-label="Other series"
         className="flex items-baseline justify-between gap-6 border-t border-line pt-8 mt-20"
@@ -73,9 +72,8 @@ export default async function SeriesPage({
         {prev ? (
           <Link
             href={`/series/${prev.id}/`}
-            className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone"
-          >
-            ← {seriesLabel(prev)}
+            className="draw-link text-sm text-muted hover:text-bone"
+          >{seriesLabel(prev)}
           </Link>
         ) : (
           <span />
@@ -83,10 +81,9 @@ export default async function SeriesPage({
         {next ? (
           <Link
             href={`/series/${next.id}/`}
-            className="draw-link font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted hover:text-bone"
+            className="draw-link text-sm text-muted hover:text-bone"
           >
-            {seriesLabel(next)} →
-          </Link>
+            {seriesLabel(next)}</Link>
         ) : (
           <span />
         )}

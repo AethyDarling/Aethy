@@ -7,7 +7,7 @@ import { theme } from "@/content/theme";
 // hero.svg is measured, hidden behind a full dash offset, then animated
 // drawing itself in, staggered in document order (the order the artist
 // drew them). Filled shapes without strokes fade in near the end.
-// Uses the Web Animations API — no per-frame JS cost, fully compositable.
+// Uses the Web Animations API; no per-frame JS cost, fully compositable.
 
 export default function DrawOnSvg({
   markup,

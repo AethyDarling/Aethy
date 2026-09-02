@@ -1,10 +1,10 @@
 // =============================================================================
-// CHARACTERS — one entry per character, matching one folder per character
+// CHARACTERS; one entry per character, matching one folder per character
 // inside  public/art/characters/
 //
 // HOW TO ADD A CHARACTER:
 //   1. Create their folder:  public/art/characters/<character-name>/
-//      (lowercase, hyphens instead of spaces — see the _README.md in that folder)
+//      (lowercase, hyphens instead of spaces; see the _README.md in that folder)
 //   2. Drop their reference sheets / art into that folder.
 //   3. Copy the aethy entry below (the whole { ... }, block) and paste it
 //      after the last entry, then edit each line.
@@ -15,9 +15,9 @@
 //   - Every line inside an entry ends with a comma
 // =============================================================================
 
-/** One image belonging to a character. (Shape definition — don't edit.) */
+/** One image belonging to a character. (Shape definition; don't edit.) */
 export type CharacterImage = {
-  /** Filename inside that character's folder — must match exactly, including .jpg/.png/.webp */
+  /** Filename inside that character's folder; must match exactly, including .jpg/.png/.webp */
   file: string;
   /** Optional. Images are shown unlabelled (just "Plate 01", "Plate 02", …); if given, used only as accessible alt text. */
   label?: string;
@@ -25,19 +25,19 @@ export type CharacterImage = {
   nsfw: boolean;
 };
 
-/** One character. (Shape definition — don't edit.) */
+/** One character. (Shape definition; don't edit.) */
 export type Character = {
-  /** The character's folder name inside public/art/characters/ — must match the folder exactly. Also becomes their page address, e.g. /characters/aethy/ */
+  /** The character's folder name inside public/art/characters/; must match the folder exactly. Also becomes their page address, e.g. /characters/aethy/ */
   folder: string;
   /** The character's display name, as visitors should see it. */
   name: string;
   /** The character's species, shown under their name. Can be "" if you'd rather not say. */
   species: string;
-  /** A paragraph (or several — use \n\n between them) introducing the character: who they are, their story, their lore. */
+  /** A paragraph (or several; use \n\n between them) introducing the character: who they are, their story, their lore. */
   description: string;
   /** Which image (by filename, from the images list below) to use as this character's thumbnail on the index page. */
   thumbnail: string;
-  /** true if the character as a whole is adult-only — hides the entire character until the visitor confirms 18+. Individual images also have their own nsfw flag. */
+  /** true if the character as a whole is adult-only; hides the entire character until the visitor confirms 18+. Individual images also have their own nsfw flag. */
   nsfw: boolean;
   /** The character's images, in the order they should appear. Each is a { ... }, block. */
   images: CharacterImage[];
@@ -45,12 +45,12 @@ export type Character = {
 
 /**
  * All your characters. The aethy entry below points at the real files in
- * public/art/characters/aethy/ — edit the [EDIT ME] text with your own
+ * public/art/characters/aethy/; edit the [EDIT ME] text with your own
  * species/lore whenever.
  */
 export const characters: Character[] = [
   {
-    // Folder name inside public/art/characters/ — must match exactly.
+    // Folder name inside public/art/characters/; must match exactly.
     folder: "aethy",
 
     // Display name, however you like it capitalized.

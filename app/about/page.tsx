@@ -6,14 +6,14 @@ import Reveal from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Aethy — concept artist, 4+ years in the field, with a love for anatomy and realism.",
+    "About Aethy, a concept artist with 4+ years in the field and a love for anatomy and realism.",
 };
 
 export default function AboutPage() {
   const mailto = `mailto:${site.email}?subject=${encodeURIComponent("Hello")}`;
   return (
     <div className="container-page pt-16 sm:pt-24">
-      <SectionHeading label="01 — The artist" title="About" />
+      <SectionHeading title="About" />
 
       <div className="grid lg:grid-cols-[7fr_4fr] gap-14 lg:gap-20">
         <Reveal>
@@ -30,9 +30,9 @@ export default function AboutPage() {
 
           {site.credits.length > 0 && (
             <div className="mt-20">
-              <p className="label-caps text-muted pb-5 border-b border-line max-w-2xl">
+              <h2 className="font-display text-2xl text-bone pb-4 border-b border-line max-w-2xl">
                 Selected credits
-              </p>
+              </h2>
               <ul className="max-w-2xl">
                 {site.credits.map((credit) => (
                   <li
@@ -47,13 +47,11 @@ export default function AboutPage() {
           )}
 
           <div className="mt-20 max-w-2xl">
-            <p className="label-caps text-muted pb-5 border-b border-line">
-              02 — What I do
-            </p>
+            <h2 className="font-display text-2xl text-bone pb-4 border-b border-line">
+              What I do
+            </h2>
             <div className="py-6 border-b border-line">
-              <h2 className="font-display text-xl sm:text-2xl text-bone mb-2">
-                Concept work — only
-              </h2>
+              <p className="text-bone mb-1">Concept work only.</p>
               <p className="text-muted text-sm leading-relaxed">
                 Characters and creatures designed from the anatomy up, aimed at
                 realism.
@@ -67,11 +65,11 @@ export default function AboutPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/art/characters/aethy/aethy-character-example-7.webp"
-              alt="Aethy — colored bust self-portrait"
+              alt="Aethy, colored bust self-portrait"
               loading="lazy"
               className="w-full aspect-square object-cover border border-line mb-8"
             />
-            <p className="label-caps text-muted mb-6">03 — Contact</p>
+            <h2 className="font-display text-2xl text-bone mb-6">Contact</h2>
             <ul className="space-y-3 mb-10">
               {site.socials.map((s) => (
                 <li key={s.label}>
@@ -83,7 +81,7 @@ export default function AboutPage() {
                   >
                     {s.label}
                     {s.url.includes("EDIT-ME") && (
-                      <span className="font-mono text-[0.6rem] uppercase text-muted ml-2">
+                      <span className="font-sans text-[0.6rem] uppercase text-muted ml-2">
                         [soon]
                       </span>
                     )}
@@ -92,12 +90,11 @@ export default function AboutPage() {
               ))}
             </ul>
             <p className="text-muted text-xs mb-5 leading-relaxed">
-              For commissions, collaborations, or just to say the anatomy looks
-              right:
+              For commissions and collaborations:
             </p>
             <a
               href={mailto}
-              className="inline-block border border-bone text-bone font-mono text-xs uppercase tracking-[0.2em] px-6 py-3 hover:bg-bone hover:text-ink transition-colors"
+              className="inline-block border border-bone text-bone text-sm px-5 py-3 hover:bg-bone hover:text-ink transition-colors"
             >
               {site.email}
             </a>

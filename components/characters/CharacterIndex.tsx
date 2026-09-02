@@ -46,7 +46,7 @@ export default function CharacterIndex({
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img
                     src={`/art/characters/${c.folder}/${thumbEntry.file}`}
-                    alt={thumbEntry.label ? `${c.name} — ${thumbEntry.label}` : c.name}
+                    alt={thumbEntry.label ? `${c.name}, ${thumbEntry.label}` : c.name}
                     loading="lazy"
                     decoding="async"
                     className="trace-img w-full aspect-[4/5] object-cover"
@@ -58,16 +58,16 @@ export default function CharacterIndex({
                 )}
               </span>
               <span className="flex items-baseline justify-between gap-3 pt-3">
-                <span className="font-display italic text-xl text-bone">
+                <span className="font-display text-xl text-bone">
                   {c.name}
                   {c.nsfw && (
-                    <span className="ml-2 align-middle font-mono text-[0.55rem] uppercase text-mint border border-mint px-1">
+                    <span className="ml-2 align-middle font-sans text-[0.55rem] uppercase text-mint border border-mint px-1">
                       18+
                     </span>
                   )}
                 </span>
                 {c.species && !c.species.startsWith("[EDIT") && (
-                  <span className="font-mono text-[0.6rem] uppercase tracking-[0.15em] text-muted">
+                  <span className="text-sm text-muted">
                     {c.species}
                   </span>
                 )}

@@ -37,7 +37,7 @@ export function NsfwProvider({ children }: { children: React.ReactNode }) {
     try {
       if (sessionStorage.getItem(STORAGE_KEY) === "1") setShown(true);
     } catch {
-      /* storage unavailable — stay SFW */
+      /* storage unavailable; stay SFW */
     }
   }, []);
 

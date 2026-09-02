@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import type { MotionValue } from "framer-motion";
 import { theme } from "@/content/theme";
 
-// Ambient "construction tick" field: short, fine line segments — the marks
-// an artist leaves when measuring proportions — drifting slowly behind the
+// Ambient "construction tick" field: short, fine line segments; the marks
+// an artist leaves when measuring proportions; drifting slowly behind the
 // hero. The cursor bends nearby ticks toward its direction of travel.
 // Flat single-color strokes only. Cost is capped: small fixed count,
 // devicePixelRatio clamped, and the loop pauses when the hero is
